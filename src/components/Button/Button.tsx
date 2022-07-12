@@ -22,10 +22,10 @@ const ButtonStyle = styled.button<{ primary: boolean | undefined }>`
     `}
 `;
 
-interface ButtonType extends React.ComponentPropsWithoutRef<'button'> {
+type ButtonType = {
   primary?: boolean;
   children: ReactNode;
-}
+} & React.ComponentPropsWithoutRef<'button'>;
 
 const Button = (props: ButtonType) => {
   const { primary, children, ...rest } = props;

@@ -17,9 +17,10 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register('email')} />
         <input {...register('password')} />
-        <Button variant="primary" type="submit">
+        <Button primary type="submit">
           로그인
         </Button>
+        <hr />
         <Button>
           <Link href="/auth/signup">
             <a>회원가입</a>
@@ -30,4 +31,8 @@ export default function LoginPage() {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  min-width: 290px;
+  max-width: 460px;
+  margin: 0 auto;
+`;
