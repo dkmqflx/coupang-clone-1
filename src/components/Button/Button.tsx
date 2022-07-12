@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-const ButtonStyle = styled.button`
+const ButtonStyle = styled.button<{ primary: boolean | undefined }>`
   color: #0074e9;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -11,11 +11,10 @@ const ButtonStyle = styled.button`
   font-size: 17px;
   line-height: 20px;
   cursor: pointer;
-  display: block;
   width: 100%;
 
-  ${({ variant }) =>
-    variant === 'primary' &&
+  ${({ primary }) =>
+    primary &&
     css`
       background-color: #0074e9;
       color: #fff;
@@ -23,14 +22,19 @@ const ButtonStyle = styled.button`
     `}
 `;
 
-function Button(props) {
-  const { variant, children, ...rest } = props;
+interface ButtonType extends React.ComponentPropsWithoutRef<'button'> {
+  primary?: boolean;
+  children: ReactNode;
+}
+
+const Button = (props: ButtonType) => {
+  const { primary, children, ...rest } = props;
 
   return (
-    <ButtonStyle variant={variant} {...rest}>
+    <ButtonStyle primary={primary} {...rest}>
       {children}
     </ButtonStyle>
   );
-}
+};
 
 export default Button;
