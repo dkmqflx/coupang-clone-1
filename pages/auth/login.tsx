@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
+import Input from '../../src/components/Input/Input';
 import Button from '../../src/components/Button/Button';
 import Link from 'next/link';
 
@@ -15,8 +16,8 @@ export default function LoginPage() {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('email')} />
-        <input {...register('password')} />
+        <Input {...register('email')} />
+        <Input {...register('password')} />
         <Button primary type="submit">
           로그인
         </Button>
