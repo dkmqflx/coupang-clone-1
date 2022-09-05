@@ -1,32 +1,26 @@
-import axios from "axios";
-import cookies from "js-cookie";
+import Service from "./service";
+import HttpService, { httpImpl } from "./http.service";
+import CookieService, { cookieImpl } from "./cookie.service";
 
-class UserService {
-  async me() {
-    const accessToken = cookies.get("accessToken");
+class UserService extends Service {
+  constructor(public cookie: cookieImpl, public http: httpImpl) {
+    super(cookie, http);
+  }
+
+  me = async () => {
+    const accessToken = this.getAccessToken();
+
     if (!accessToken) {
       return;
     }
-
-    const { data } = await axios.get(
-      process.env.NEXT_PUBLIC_API_HOST + "/users/me",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
+    const { data } = await this.get("/users/me", accessToken);
     return data;
-  }
+  };
 
-  async read(id: number) {
-    const { data } = await axios.get(
-      process.env.NEXT_PUBLIC_API_HOST + "/users/" + id
-    );
-
+  read = async (id: number) => {
+    const { data } = await this.get("/users/" + id);
     return data;
-  }
+  };
 }
 
-export default new UserService();
+export default new UserService(CookieService, HttpService);
