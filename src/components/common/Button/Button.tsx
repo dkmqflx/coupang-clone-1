@@ -2,7 +2,14 @@ import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-const ButtonWrapper = styled.button<{ primary: boolean | undefined }>`
+const ButtonWrapper = styled.div`
+  max-width: 460px;
+  & + & {
+    margin-top: 8px;
+  }
+`;
+
+const ButtonStyled = styled.button<{ primary: boolean | undefined }>`
   background-color: #fff;
   color: #0074e9;
   border: 1px solid #ccc;
@@ -16,7 +23,6 @@ const ButtonWrapper = styled.button<{ primary: boolean | undefined }>`
       box-shadow: inset 0 -2px 0 rgb(0 0 0 / 38%);
       border: none;
     `}
-  max-width: 460px;
 
   padding: 16px 17px;
   font-size: 17px;
@@ -43,15 +49,18 @@ type AnchorProps = React.HTMLProps<HTMLAnchorElement> & {
 const Button = forwardRef<HTMLAnchorElement, AnchorProps>(
   ({ primary = false, href, children, type = "submit" }: AnchorProps, ref) => {
     return href ? (
-      <a href={href} ref={ref}>
-        <ButtonWrapper type="button" primary={primary}>
-          {children}
-        </ButtonWrapper>
-        ;
-      </a>
+      <ButtonWrapper>
+        <a href={href} ref={ref}>
+          <ButtonStyled type="button" primary={primary}>
+            {children}
+          </ButtonStyled>
+        </a>
+      </ButtonWrapper>
     ) : (
-      <ButtonWrapper type={type} primary={primary}>
-        {children}
+      <ButtonWrapper>
+        <ButtonStyled type={type} primary={primary}>
+          {children}
+        </ButtonStyled>
       </ButtonWrapper>
     );
   }
