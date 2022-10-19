@@ -327,97 +327,100 @@ export default function SignupPage() {
             checked={getValues('all')}
             errorMessage={errors.all?.message}
           />
-          <CheckBox
-            {...register('age', {
-              required: true,
-            })}
-            text='[필수] 만 14세 이상입니다'
-            checked={getValues('age')}
-            onChange={() => checkMandatoryTerms(`age`)}
-          />
-          <CheckBox
-            {...register('termAndConditions', {
-              required: true,
-            })}
-            description
-            text='[필수] 쿠팡 이용약관 동의'
-            checked={getValues('termAndConditions')}
-            onChange={() => checkMandatoryTerms(`termAndConditions`)}
-          />
-          <CheckBox
-            {...register('financialTransactions', {
-              required: true,
-            })}
-            description
-            text='[필수] 전자금융거래 이용약관 동의'
-            checked={getValues('financialTransactions')}
-            onChange={() => checkMandatoryTerms(`financialTransactions`)}
-          />
-          <CheckBox
-            {...register('personalInformation', {
-              required: true,
-            })}
-            description
-            text='[필수] 개인정보 수집 및 이용 동의'
-            checked={getValues('personalInformation')}
-            onChange={() => checkMandatoryTerms(`personalInformation`)}
-          />
-          <CheckBox
-            {...register('personalInformationToThirdParty', {
-              required: true,
-            })}
-            description
-            text='[필수] 개인정보 제3자 제공 동의'
-            checked={getValues('personalInformationToThirdParty')}
-            onChange={() =>
-              checkMandatoryTerms(`personalInformationToThirdParty`)
-            }
-          />
-          <CheckBox
-            {...register('personalInformationForMarketing', {
-              required: false,
-            })}
-            text='[선택] 마케팅 목적의 개인정보 수집 및 이용 동의'
-            checked={getValues('personalInformationForMarketing')}
-            onChange={() =>
-              checkOptionalTerms('personalInformationForMarketing')
-            }
-          />
 
-          <CheckBox
-            {...register('advertisingAll', {
-              required: false,
-            })}
-            onChange={checkOptionalAgreementAll}
-            checked={getValues('advertisingAll')}
-            description
-            text='[선택] 광고성 정보 수신 동의'
-          >
+          <CheckBoxTermsWrapper>
             <CheckBox
-              {...register('advertisingEmail', {
-                required: false,
+              {...register('age', {
+                required: true,
               })}
-              checked={getValues('advertisingEmail')}
-              text='[선택] 이메일 수신 동의'
-              onChange={() => checkOptionalTerms('advertisingEmail')}
+              text='[필수] 만 14세 이상입니다'
+              checked={getValues('age')}
+              onChange={() => checkMandatoryTerms(`age`)}
             />
             <CheckBox
-              {...register('sms', {
-                required: false,
+              {...register('termAndConditions', {
+                required: true,
               })}
-              checked={getValues('sms')}
-              text='[선택] SMS,MMS 수신 동의'
-              onChange={() => checkOptionalTerms('sms')}
+              description
+              text='[필수] 쿠팡 이용약관 동의'
+              checked={getValues('termAndConditions')}
+              onChange={() => checkMandatoryTerms(`termAndConditions`)}
             />
             <CheckBox
-              {...register('appPush', {
+              {...register('financialTransactions', {
+                required: true,
+              })}
+              description
+              text='[필수] 전자금융거래 이용약관 동의'
+              checked={getValues('financialTransactions')}
+              onChange={() => checkMandatoryTerms(`financialTransactions`)}
+            />
+            <CheckBox
+              {...register('personalInformation', {
+                required: true,
+              })}
+              description
+              text='[필수] 개인정보 수집 및 이용 동의'
+              checked={getValues('personalInformation')}
+              onChange={() => checkMandatoryTerms(`personalInformation`)}
+            />
+            <CheckBox
+              {...register('personalInformationToThirdParty', {
+                required: true,
+              })}
+              description
+              text='[필수] 개인정보 제3자 제공 동의'
+              checked={getValues('personalInformationToThirdParty')}
+              onChange={() =>
+                checkMandatoryTerms(`personalInformationToThirdParty`)
+              }
+            />
+            <CheckBox
+              {...register('personalInformationForMarketing', {
                 required: false,
               })}
-              checked={getValues('appPush')}
-              text='[선택] 앱 푸시 수신 동의'
-              onChange={() => checkOptionalTerms('appPush')}
+              text='[선택] 마케팅 목적의 개인정보 수집 및 이용 동의'
+              checked={getValues('personalInformationForMarketing')}
+              onChange={() =>
+                checkOptionalTerms('personalInformationForMarketing')
+              }
             />
-          </CheckBox>
+
+            <CheckBox
+              {...register('advertisingAll', {
+                required: false,
+              })}
+              onChange={checkOptionalAgreementAll}
+              checked={getValues('advertisingAll')}
+              description
+              text='[선택] 광고성 정보 수신 동의'
+            >
+              <CheckBox
+                {...register('advertisingEmail', {
+                  required: false,
+                })}
+                checked={getValues('advertisingEmail')}
+                text='[선택] 이메일 수신 동의'
+                onChange={() => checkOptionalTerms('advertisingEmail')}
+              />
+              <CheckBox
+                {...register('sms', {
+                  required: false,
+                })}
+                checked={getValues('sms')}
+                text='[선택] SMS,MMS 수신 동의'
+                onChange={() => checkOptionalTerms('sms')}
+              />
+              <CheckBox
+                {...register('appPush', {
+                  required: false,
+                })}
+                checked={getValues('appPush')}
+                text='[선택] 앱 푸시 수신 동의'
+                onChange={() => checkOptionalTerms('appPush')}
+              />
+            </CheckBox>
+          </CheckBoxTermsWrapper>
         </CheckBoxWrapper>
 
         <Button primary type='submit'>
@@ -439,4 +442,9 @@ const Wrapper = styled.div`
 
 const CheckBoxWrapper = styled.div`
   margin: 18px 0;
+`;
+
+const CheckBoxTermsWrapper = styled.div`
+  padding: 14px;
+  border: 1px solid #ccc;
 `;
