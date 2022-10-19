@@ -12,7 +12,8 @@
 
 ---
 
-### [StoryBook](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
+### StoryBook
+- [https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
 
 ---
 
