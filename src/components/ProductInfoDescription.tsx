@@ -54,15 +54,17 @@ const ProductInfoDescription = ({ info }: { info: infoType }) => {
             <OtherSellerText>다른 판매자 보기({ohterSeller})</OtherSellerText>
           </Space>
 
-          {delivery.map(({ date, condition }) => (
-            <Radio key={date}>
-              <Space size={1}>
-                <ArrivalBoldText>{date}</ArrivalBoldText>
-                <ArrivalText>도착 보장</ArrivalText>
-                <ArrivalPlainText>({condition})</ArrivalPlainText>
-              </Space>
-            </Radio>
-          ))}
+          <Radio.Group value={0}>
+            {delivery.map(({ date, condition }, index) => (
+              <Radio key={date} value={index}>
+                <Space size={1}>
+                  <ArrivalBoldText>{date}</ArrivalBoldText>
+                  <ArrivalText>도착 보장</ArrivalText>
+                  <ArrivalPlainText>({condition})</ArrivalPlainText>
+                </Space>
+              </Radio>
+            ))}
+          </Radio.Group>
         </Space>
       </Space>
 
