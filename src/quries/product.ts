@@ -44,3 +44,33 @@ export const useGetProductInfo = (
     }
   );
 };
+
+const getOhterProduct = async (
+  productId: string | undefined,
+  itemId: string | undefined,
+  vendoritemId: string | undefined
+) => {
+  const { data } = await axios({
+    url: `/api/products/${productId}/brand-sdp/widget/brand-sdp?itemId=${itemId}&vendoritemId=${vendoritemId}`,
+    method: 'get',
+  });
+
+  return data;
+};
+
+export const useGetOhterProduct = (
+  productId: string | undefined,
+  itemId: string | undefined,
+  vendoritemId: string | undefined
+) => {
+  return useQuery(
+    [`product-other-${productId}${itemId}-${vendoritemId}`],
+    () => getOhterProduct(productId, itemId, vendoritemId),
+    {
+      enabled:
+        productId !== undefined &&
+        itemId !== undefined &&
+        vendoritemId !== undefined,
+    }
+  );
+};
