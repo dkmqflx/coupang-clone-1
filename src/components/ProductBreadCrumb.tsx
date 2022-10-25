@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import React from 'react';
 import { useGetProductBreadCrumb } from '../quries/product';
+import styled from '@emotion/styled';
 
 const ProductBreadCrumb = ({
   productId,
