@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import ProductBreadCrumb from '../../src/components/ProductBreadCrumb';
 import ProductInfo from '../../src/components/ProductInfo';
+import OhterProduct from '../../src/components/OhterProduct';
 import styled from '@emotion/styled';
 
 export default function VendoritemPage() {
@@ -8,7 +9,8 @@ export default function VendoritemPage() {
   const {
     productId,
     vendoritemId,
-  }: { productId?: string; vendoritemId?: string } = query;
+    itemId,
+  }: { productId?: string; vendoritemId?: string; itemId?: string } = query;
 
   return (
     <Container>
@@ -17,6 +19,11 @@ export default function VendoritemPage() {
         productId={productId}
         vendoritemId={vendoritemId}
       ></ProductInfo>
+      <OhterProduct
+        productId={productId}
+        vendoritemId={vendoritemId}
+        itemId={itemId}
+      ></OhterProduct>
     </Container>
   );
 }

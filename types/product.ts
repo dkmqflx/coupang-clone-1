@@ -20,3 +20,11 @@ export type infoType = {
   appleCare: number;
   model: string[];
 };
+
+export type otherProductType = {
+  image: imageType;
+  title: string;
+  price: number;
+  review: number;
+  rating: number;
+};
