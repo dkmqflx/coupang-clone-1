@@ -16,7 +16,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'GET') {
-    console.log(one);
     res.status(200).json({
       images: {
         main,
