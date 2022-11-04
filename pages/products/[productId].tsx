@@ -4,6 +4,7 @@ import ProductInfo from '../../src/components/ProductInfo';
 import OhterProduct from '../../src/components/OhterProduct';
 import styled from '@emotion/styled';
 import ProductDetails from '../../src/components/ProductDetails';
+import HeadMeta from '../../src/components/HeadMeta';
 
 export default function VendoritemPage() {
   const { query } = useRouter();
@@ -15,6 +16,7 @@ export default function VendoritemPage() {
 
   return (
     <Container>
+      <HeadMeta productId={productId} vendoritemId={vendoritemId}></HeadMeta>
       <ProductBreadCrumb productId={productId}></ProductBreadCrumb>
       <ProductInfo
         productId={productId}
