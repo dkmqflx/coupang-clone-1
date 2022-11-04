@@ -75,3 +75,33 @@ export const useGetOhterProduct = (
     }
   );
 };
+
+const getProductDetails = async (
+  productId: string | undefined,
+  itemId: string | undefined,
+  vendoritemId: string | undefined
+) => {
+  const { data } = await request({
+    url: `/api/products/${productId}/items/${itemId}/vendoritems/${vendoritemId}`,
+    method: 'get',
+  });
+
+  return data;
+};
+
+export const useGetProductDetails = (
+  productId: string | undefined,
+  itemId: string | undefined,
+  vendoritemId: string | undefined
+) => {
+  return useQuery(
+    [`product-details-${productId}${itemId}-${vendoritemId}`],
+    () => getProductDetails(productId, itemId, vendoritemId),
+    {
+      enabled:
+        productId !== undefined &&
+        itemId !== undefined &&
+        vendoritemId !== undefined,
+    }
+  );
+};

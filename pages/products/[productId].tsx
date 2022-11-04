@@ -3,6 +3,7 @@ import ProductBreadCrumb from '../../src/components/ProductBreadCrumb';
 import ProductInfo from '../../src/components/ProductInfo';
 import OhterProduct from '../../src/components/OhterProduct';
 import styled from '@emotion/styled';
+import ProductDetails from '../../src/components/ProductDetails';
 
 export default function VendoritemPage() {
   const { query } = useRouter();
@@ -24,6 +25,11 @@ export default function VendoritemPage() {
         vendoritemId={vendoritemId}
         itemId={itemId}
       ></OhterProduct>
+      <ProductDetails
+        productId={productId}
+        vendoritemId={vendoritemId}
+        itemId={itemId}
+      ></ProductDetails>
     </Container>
   );
 }

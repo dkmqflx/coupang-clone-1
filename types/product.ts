@@ -57,3 +57,15 @@ export type otherProductType = {
   salesPrice: number;
   title: string;
 };
+
+export type detailImageType = {
+  contentType: string;
+  cssClass: string;
+
+  vendorItemContentDescriptions: {
+    content: string;
+    cssClass: string;
+    detailType: string;
+    imageType: boolean;
+  }[];
+};
