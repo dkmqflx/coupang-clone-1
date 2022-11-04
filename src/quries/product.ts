@@ -51,7 +51,7 @@ const getOhterProduct = async (
   itemId: string | undefined,
   vendoritemId: string | undefined
 ) => {
-  const { data } = await axios({
+  const { data } = await request({
     url: `/api/products/${productId}/brand-sdp/widget/brand-sdp?itemId=${itemId}&vendoritemId=${vendoritemId}`,
     method: 'get',
   });

@@ -18,26 +18,54 @@ const OhterProduct = ({
 
   if (!data) return null;
 
-  const { brand, items } = data;
+  const { brandName, claimText, logoImageUrl, itemTotal, items } = data;
+
+  const previewItems = items.slice(0, 4).map(
+    ({
+      itemId,
+      imageUrl,
+
+      ratingAverage,
+      ratingCount,
+      salesPrice,
+      title,
+    }: otherProductType) => ({
+      itemId,
+      imageUrl,
+
+      ratingAverage,
+      ratingCount,
+      salesPrice,
+      title,
+    })
+  );
 
   return (
     <div>
-      <h2>Apple의 다른 상품들</h2>
+      <h2>{brandName}의 다른 상품들</h2>
       <ImageContainer>
-        {items.map(
-          ({ image, title, price, review, rating }: otherProductType) => (
-            <Product key={title}>
+        {previewItems.map(
+          ({
+            itemId,
+            imageUrl,
+            ratingAverage,
+            ratingCount,
+            salesPrice,
+            title,
+          }: otherProductType) => (
+            <Product key={itemId}>
               <Image
-                src={image.src}
-                blurDataURL={image.blurDataURL}
-                height={image.height}
-                width={image.width}
+                src={`https:${imageUrl}`}
+                blurDataURL={`https:${imageUrl}`}
+                height={160}
+                width={160}
               ></Image>
               <TitleText>{title}</TitleText>
-              <Price>{`${price.toLocaleString()}원`}</Price>
+              <Price>{`${salesPrice.toLocaleString()}원`}</Price>
+
               <Space>
-                <Rating defaultValue={rating} disabled={true}></Rating>
-                <ReviewCount>({review})</ReviewCount>
+                <Rating defaultValue={ratingAverage} disabled={true}></Rating>
+                <ReviewCount>({ratingCount})</ReviewCount>
               </Space>
             </Product>
           )
@@ -46,18 +74,16 @@ const OhterProduct = ({
         <Product>
           <ImageWrapper>
             <Image
-              src={brand.image.src}
-              blurDataURL={brand.image.blurDataURL}
-              height={brand.image.height}
-              width={brand.image.width}
+              src={`https:${logoImageUrl}`}
+              blurDataURL={`https:${logoImageUrl}`}
+              height={140}
+              width={140}
             ></Image>
           </ImageWrapper>
 
+          <BrandInfoText>{claimText}</BrandInfoText>
           <BrandInfoText>
-            같은 브랜드 상품을 한곳에서 모아볼 수 있어요!
-          </BrandInfoText>
-          <BrandInfoText>
-            총 <TotalCount>{brand.count}</TotalCount> 개
+            총 <TotalCount>{itemTotal}</TotalCount> 개
           </BrandInfoText>
           <Button>브랜드샵 구경할까요?</Button>
         </Product>

@@ -50,14 +50,10 @@ export type infoType = {
 };
 
 export type otherProductType = {
-  image: {
-    blurDataURL: string;
-    height: number;
-    src: string;
-    width: number;
-  };
+  itemId: number;
+  imageUrl: string;
+  ratingAverage: number;
+  ratingCount: number;
+  salesPrice: number;
   title: string;
-  price: number;
-  review: number;
-  rating: number;
 };
