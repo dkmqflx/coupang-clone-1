@@ -2,18 +2,11 @@ import Image from 'next/image';
 import React from 'react';
 import { useGetOhterProduct } from '../quries/product';
 import { otherProductType } from '../../types/product';
+import { paramsType } from '../../types/params';
 import styled from '@emotion/styled';
 import { Space, Rate, Button } from 'antd';
 
-const OhterProduct = ({
-  productId,
-  vendoritemId,
-  itemId,
-}: {
-  productId: string | undefined;
-  vendoritemId: string | undefined;
-  itemId: string | undefined;
-}) => {
+const OhterProduct = ({ productId, vendoritemId, itemId }: paramsType) => {
   const { data } = useGetOhterProduct(productId, itemId, vendoritemId);
 
   if (!data) return null;

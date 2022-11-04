@@ -2,18 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import { useGetProductDetails } from '../quries/product';
 import { detailImageType } from '../../types/product';
+import { paramsType } from '../../types/params';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-const ProductDetails = ({
-  productId,
-  vendoritemId,
-  itemId,
-}: {
-  productId: string | undefined;
-  vendoritemId: string | undefined;
-  itemId: string | undefined;
-}) => {
+const ProductDetails = ({ productId, vendoritemId, itemId }: paramsType) => {
   const { data } = useGetProductDetails(productId, itemId, vendoritemId);
 
   if (!data) return null;

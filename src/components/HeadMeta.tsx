@@ -1,14 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import { useGetProductInfo } from '../quries/product';
+import { paramsType } from '../../types/params';
 
-const HeadMeta = ({
-  productId,
-  vendoritemId,
-}: {
-  productId: string | undefined;
-  vendoritemId: string | undefined;
-}) => {
+const HeadMeta = ({ productId, vendoritemId }: paramsType) => {
   const { data } = useGetProductInfo(productId, vendoritemId);
 
   return (

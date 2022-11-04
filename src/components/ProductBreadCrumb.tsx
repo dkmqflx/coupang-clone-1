@@ -1,12 +1,9 @@
 import React from 'react';
 import { useGetProductBreadCrumb } from '../quries/product';
+import { paramsType } from '../../types/params';
 import styled from '@emotion/styled';
 
-const ProductBreadCrumb = ({
-  productId,
-}: {
-  productId: string | undefined;
-}) => {
+const ProductBreadCrumb = ({ productId }: paramsType) => {
   const { data } = useGetProductBreadCrumb(productId);
 
   return (

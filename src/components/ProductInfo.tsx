@@ -3,14 +3,9 @@ import React from 'react';
 import { useGetProductInfo } from '../quries/product';
 import ProductInfoDescription from './ProductInfoDescription';
 import ProductInfoImage from './ProductInfoImage';
+import { paramsType } from '../../types/params';
 
-const ProductInfo = ({
-  productId,
-  vendoritemId,
-}: {
-  productId: string | undefined;
-  vendoritemId: string | undefined;
-}) => {
+const ProductInfo = ({ productId, vendoritemId }: paramsType) => {
   const { data } = useGetProductInfo(productId, vendoritemId);
 
   if (!data) return null;
