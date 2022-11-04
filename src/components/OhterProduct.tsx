@@ -20,7 +20,7 @@ const OhterProduct = ({
 
   const { brandName, claimText, logoImageUrl, itemTotal, items } = data;
 
-  const previewItems = items.slice(0, 4).map(
+  const previewItems = items?.slice(0, 4).map(
     ({
       itemId,
       imageUrl,
@@ -44,7 +44,7 @@ const OhterProduct = ({
     <div>
       <h2>{brandName}의 다른 상품들</h2>
       <ImageContainer>
-        {previewItems.map(
+        {previewItems?.map(
           ({
             itemId,
             imageUrl,
