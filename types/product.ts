@@ -1,28 +1,61 @@
-export type imageType = {
-  blurDataURL: string;
-  height: number;
-  src: string;
-  width: number;
+export type imagesType = {
+  detailImage: string;
+  origin: string;
+  preloadImage: string;
+  thumbnailImage: string;
 };
 
 export type infoType = {
+  id: number;
   brand: string;
-  title: string;
-  review: number;
-  price: number;
-  discountRatio: number;
-  earnedPrice: number;
-  ohterSeller: number;
+  itemName: string;
+  buyableQuantity: number;
+
+  ratings: {
+    ratingCount: number;
+    ratingAverage: number;
+  };
+
+  price: {
+    originPrice: string;
+    salePrice: string;
+    discountRate: string;
+    priceUnit: string;
+  };
+
+  ccid: {
+    ccidText: string;
+    iconUrl: string;
+  };
+  cashBack: {
+    finalCashBackAmt: number;
+    iconUrl: string;
+  };
+
+  otherSellerCount: number;
+
   delivery: {
-    date: string;
-    condition: string;
+    descriptions: string;
+    countDown: string;
   }[];
-  appleCare: number;
-  model: string[];
+
+  insurance: {
+    iconUrl: string;
+    name: string;
+    price: string;
+    description: string;
+  };
+
+  sellingInfo: string[];
 };
 
 export type otherProductType = {
-  image: imageType;
+  image: {
+    blurDataURL: string;
+    height: number;
+    src: string;
+    width: number;
+  };
   title: string;
   price: number;
   review: number;

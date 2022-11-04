@@ -15,6 +15,7 @@ const OhterProduct = ({
   itemId: string | undefined;
 }) => {
   const { data } = useGetOhterProduct(productId, itemId, vendoritemId);
+
   if (!data) return null;
 
   const { brand, items } = data;
@@ -24,22 +25,14 @@ const OhterProduct = ({
       <h2>Apple의 다른 상품들</h2>
       <ImageContainer>
         {items.map(
-          ({
-            image: { src, blurDataURL, height, width },
-            title,
-            price,
-            review,
-            rating,
-          }: otherProductType) => (
+          ({ image, title, price, review, rating }: otherProductType) => (
             <Product key={title}>
-              <>
-                <Image
-                  src={src}
-                  blurDataURL={blurDataURL}
-                  height={height}
-                  width={width}
-                ></Image>
-              </>
+              <Image
+                src={image.src}
+                blurDataURL={image.blurDataURL}
+                height={image.height}
+                width={image.width}
+              ></Image>
               <TitleText>{title}</TitleText>
               <Price>{`${price.toLocaleString()}원`}</Price>
               <Space>
@@ -98,10 +91,9 @@ const ImageWrapper = styled.div`
 
 const Price = styled.div`
   color: #ae0000;
-  font-size: 20px;
+  font-size: 13px;
   line-height: 21px;
   font-weight: bold;
-  margin: 8px 0;
 `;
 
 const Rating = styled(Rate)`

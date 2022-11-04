@@ -1,25 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
-import { imageType } from '../../types/product';
+import { imagesType } from '../../types/product';
 import styled from '@emotion/styled';
 
-const ProductInfoImage = ({
-  main,
-  side,
-}: {
-  main: imageType;
-  side: imageType[];
-}) => {
+const ProductInfoImage = ({ images }: { images: imagesType[] }) => {
   return (
     <Wrapper>
       <SideImages>
-        {side.map(({ blurDataURL, src, height, width }) => (
-          <SideImage key={src}>
+        {images.map(({ thumbnailImage, preloadImage }) => (
+          <SideImage key={thumbnailImage}>
             <Image
-              src={src}
-              blurDataURL={blurDataURL}
-              height={height}
-              width={width}
+              src={`https:${thumbnailImage}`}
+              blurDataURL={`https:${preloadImage}`}
+              width={48}
+              height={48}
             ></Image>
           </SideImage>
         ))}
@@ -27,10 +21,10 @@ const ProductInfoImage = ({
 
       <MainImage>
         <Image
-          width={main.width}
-          height={main.height}
-          src={main.src}
-          blurDataURL={main.blurDataURL}
+          width={410}
+          height={410}
+          src={`https:${images[0].detailImage}`}
+          blurDataURL={`https:${images[0].preloadImage}`}
         ></Image>
       </MainImage>
     </Wrapper>

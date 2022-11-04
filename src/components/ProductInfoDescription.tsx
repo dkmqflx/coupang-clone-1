@@ -10,38 +10,64 @@ import {
   InputNumber,
   Radio,
 } from 'antd';
+import Image from 'next/image';
 
 const ProductInfoDescription = ({ info }: { info: infoType }) => {
   const {
     brand,
-    title,
-    review,
+    itemName,
+    buyableQuantity,
+    ratings,
     price,
-    discountRatio,
-    earnedPrice,
-    ohterSeller,
+    ccid,
+    cashBack,
+    otherSellerCount,
     delivery,
-    appleCare,
-    model,
+    insurance,
+    sellingInfo,
   } = info;
+
   return (
     <Wrapper>
       <Space direction='vertical' size={1}>
         <HightLightText>{brand}</HightLightText>
-        <ItemTitle>{title}</ItemTitle>
+        <ItemTitle>{itemName}</ItemTitle>
+
         <Space align='center'>
-          <Rating defaultValue={3} disabled={true}></Rating>
-          <HightLightText>{`${review.toLocaleString()}개 상품평`}</HightLightText>
+          <Rating defaultValue={ratings.ratingAverage} disabled={true}></Rating>
+          <HightLightText>{`${ratings.ratingCount.toLocaleString()}개 상품평`}</HightLightText>
         </Space>
       </Space>
 
       <InfoDivider></InfoDivider>
 
       <Space direction='vertical'>
-        <Price>{`${price.toLocaleString()}`}</Price>
+        <Space size={2}>
+          <DiscountRatio>{`${price.discountRate}%`}</DiscountRatio>
+          <OriginalPrice>{`${price.originPrice}${price.priceUnit}`}</OriginalPrice>
+        </Space>
+
+        <Price>{`${price.salePrice.toLocaleString()}${price.priceUnit}`}</Price>
         <Space>
-          <Benefit>{`최대 ${discountRatio}% 카드 즉시할인`}</Benefit>
-          <Benefit>{`최대 ${earnedPrice.toLocaleString()}원 적립}`}</Benefit>
+          <Benefit>
+            <Image
+              src={`https:${ccid.iconUrl}`}
+              width={14}
+              height={10}
+              alt={ccid.ccidText}
+            />
+            <span>{`${ccid.ccidText}`}</span>
+          </Benefit>
+
+          <Benefit>
+            <Image
+              src={`https:${cashBack.iconUrl}`}
+              width={14}
+              height={10}
+              alt={cashBack.iconUrl}
+            />
+            <span>{`최대 ${cashBack.finalCashBackAmt.toLocaleString()}원 적립`}</span>
+          </Benefit>
         </Space>
       </Space>
 
@@ -51,16 +77,20 @@ const ProductInfoDescription = ({ info }: { info: infoType }) => {
         <Space direction='vertical' size={1}>
           <Space>
             <BoldText>무료배송</BoldText>
-            <OtherSellerText>다른 판매자 보기({ohterSeller})</OtherSellerText>
+            <OtherSellerText>
+              다른 판매자 보기({otherSellerCount})
+            </OtherSellerText>
           </Space>
 
           <Radio.Group value={0}>
-            {delivery.map(({ date, condition }, index) => (
-              <Radio key={date} value={index}>
+            {delivery.map(({ descriptions, countDown }, index) => (
+              <Radio key={index} value={index}>
                 <Space size={1}>
-                  <ArrivalBoldText>{date}</ArrivalBoldText>
+                  <ArrivalBoldText>{descriptions}</ArrivalBoldText>
                   <ArrivalText>도착 보장</ArrivalText>
-                  <ArrivalPlainText>({condition})</ArrivalPlainText>
+                  {countDown && (
+                    <ArrivalPlainText>({countDown})</ArrivalPlainText>
+                  )}
                 </Space>
               </Radio>
             ))}
@@ -71,17 +101,25 @@ const ProductInfoDescription = ({ info }: { info: infoType }) => {
       <InfoDivider></InfoDivider>
 
       <Checkbox>
-        <Space size={1}>
-          <BoldText>AppleCare+</BoldText>
-          <span>{appleCare.toLocaleString()}</span>
+        <Space align='center' size={2}>
+          <Image
+            src={`${insurance.iconUrl}`}
+            width={20}
+            height={20}
+            alt={insurance.name}
+            style={{ marginTop: '4px' }}
+          />
+
+          <BoldText>{insurance.name}</BoldText>
+          <span>{insurance.price.toLocaleString()}</span>
         </Space>
-        <AppleCareText>우발적인 손상에 대한 보상을 받아보세요</AppleCareText>
+        <AppleCareText>{insurance.description}</AppleCareText>
       </Checkbox>
 
       <InfoDivider></InfoDivider>
 
       <Space>
-        <OrderInput defaultValue={1} min={1}></OrderInput>
+        <OrderInput defaultValue={buyableQuantity} min={1}></OrderInput>
         <OrderButton size='large'>장바구니 담기</OrderButton>
         <OrderButton size='large' type='primary'>
           {`바로구매    >`}
@@ -89,7 +127,7 @@ const ProductInfoDescription = ({ info }: { info: infoType }) => {
       </Space>
 
       <Ul>
-        {model.map((item) => (
+        {sellingInfo.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </Ul>
@@ -125,6 +163,16 @@ const Rating = styled(Rate)`
   }
 `;
 
+const DiscountRatio = styled.span`
+  font-size: 14px;
+  color: #111;
+`;
+
+const OriginalPrice = styled.span`
+  text-decoration: line-through;
+  color: #888;
+`;
+
 const Price = styled.div`
   color: #ae0000;
   font-size: 20px;
@@ -138,6 +186,11 @@ const Benefit = styled.span`
   border-radius: 10px;
   border: solid 1px #ccc;
   font-size: 12px;
+  vertical-align: middle;
+
+  span {
+    margin-left: 4px;
+  }
 `;
 
 const InfoDivider = styled(Divider)`

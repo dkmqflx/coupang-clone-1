@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
+import { request } from '../../utils/request';
 
 const getProductList = async (productId: string | undefined) => {
   const { data } = await axios({
@@ -24,7 +25,7 @@ const getProductInfo = async (
   productId: string | undefined,
   vendoritemId: string | undefined
 ) => {
-  const { data } = await axios({
+  const { data } = await request({
     url: `/api/products/${productId}/vendoritems/${vendoritemId}`,
     method: 'get',
   });
