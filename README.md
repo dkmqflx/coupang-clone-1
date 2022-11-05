@@ -1,6 +1,10 @@
-[3회차 : 상품 페이지 - 컴포넌트 ‘잘’ 나누기](https://thoughtful-arch-8c2.notion.site/f938e50503af4e4080d20de8d70bad48)
+- [3회차 : 상품 페이지 - 컴포넌트 ‘잘’ 나누기](https://thoughtful-arch-8c2.notion.site/f938e50503af4e4080d20de8d70bad48)
 
-- 해당링크에서 문제를 확인할 수 있습니다.
+  - 해당링크에서 문제를 확인할 수 있습니다.
+
+- 배포 URL
+
+  - [https://63663d83d644a75437bc70fa--dancing-biscotti-24688b.netlify.app/products/1?vendoritemId=1&itemId=1](https://63663d83d644a75437bc70fa--dancing-biscotti-24688b.netlify.app/products/1?vendoritemId=1&itemId=1)
 
 ---
 
