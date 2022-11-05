@@ -102,13 +102,14 @@ const ProductInfoDescription = ({ info }: { info: infoType }) => {
 
       <Checkbox>
         <Space align='center' size={2}>
-          <Image
-            src={`${insurance.iconUrl}`}
-            width={20}
-            height={20}
-            alt={insurance.name}
-            style={{ marginTop: '4px' }}
-          />
+          <ImageWrapper>
+            <Image
+              src={`${insurance.iconUrl}`}
+              width={20}
+              height={20}
+              alt={insurance.name}
+            />
+          </ImageWrapper>
 
           <BoldText>{insurance.name}</BoldText>
           <span>{insurance.price.toLocaleString()}</span>
@@ -247,4 +248,10 @@ const Ul = styled.ul`
   margin-top: 16px;
   padding-left: 0;
   margin-left: 16px;
+`;
+
+const ImageWrapper = styled.span`
+  display: inline-block;
+  position: relative;
+  top: 4px;
 `;
