@@ -1,36 +1,14 @@
-import axios from 'axios';
 import { useRequest } from './../hooks/useRequest';
-import { request } from '../../utils/request';
-
-const getProductList = async (productId: string | undefined) => {
-  const { data } = await axios({
-    url: `/api/products/${productId}/breadcrumb-gnbmenu`,
-    method: 'get',
-  });
-
-  return data;
-};
+import Product from '../services/product.service';
 
 export const useGetProductBreadCrumb = (productId: string | undefined) => {
   return useRequest(
     [`product-breadcrumb-${productId}`],
-    () => getProductList(productId),
+    () => Product.getProductList(productId),
     {
       enabled: productId !== undefined,
     }
   );
-};
-
-const getProductInfo = async (
-  productId: string | undefined,
-  vendoritemId: string | undefined
-) => {
-  const { data } = await request({
-    url: `/api/products/${productId}/vendoritems/${vendoritemId}`,
-    method: 'get',
-  });
-
-  return data;
 };
 
 export const useGetProductInfo = (
@@ -39,24 +17,11 @@ export const useGetProductInfo = (
 ) => {
   return useRequest(
     [`product-${productId}-${vendoritemId}`],
-    () => getProductInfo(productId, vendoritemId),
+    () => Product.getProductInfo(productId, vendoritemId),
     {
       enabled: productId !== undefined && vendoritemId !== undefined,
     }
   );
-};
-
-const getOhterProduct = async (
-  productId: string | undefined,
-  itemId: string | undefined,
-  vendoritemId: string | undefined
-) => {
-  const { data } = await request({
-    url: `/api/products/${productId}/brand-sdp/widget/brand-sdp?itemId=${itemId}&vendoritemId=${vendoritemId}`,
-    method: 'get',
-  });
-
-  return data;
 };
 
 export const useGetOhterProduct = (
@@ -66,7 +31,7 @@ export const useGetOhterProduct = (
 ) => {
   return useRequest(
     [`product-other-${productId}${itemId}-${vendoritemId}`],
-    () => getOhterProduct(productId, itemId, vendoritemId),
+    () => Product.getOtherProduct(productId, itemId, vendoritemId),
     {
       enabled:
         productId !== undefined &&
@@ -76,19 +41,6 @@ export const useGetOhterProduct = (
   );
 };
 
-const getProductDetails = async (
-  productId: string | undefined,
-  itemId: string | undefined,
-  vendoritemId: string | undefined
-) => {
-  const { data } = await request({
-    url: `/api/products/${productId}/items/${itemId}/vendoritems/${vendoritemId}`,
-    method: 'get',
-  });
-
-  return data;
-};
-
 export const useGetProductDetails = (
   productId: string | undefined,
   itemId: string | undefined,
@@ -96,7 +48,7 @@ export const useGetProductDetails = (
 ) => {
   return useRequest(
     [`product-details-${productId}${itemId}-${vendoritemId}`],
-    () => getProductDetails(productId, itemId, vendoritemId),
+    () => Product.getProductDetails(productId, itemId, vendoritemId),
     {
       enabled:
         productId !== undefined &&
