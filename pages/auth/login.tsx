@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { useForm } from "react-hook-form";
+import styled from '@emotion/styled';
+import { useForm } from 'react-hook-form';
 
 export default function LoginPage() {
   const { register, handleSubmit } = useForm<{
@@ -12,10 +12,10 @@ export default function LoginPage() {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("email")} />
-        <input {...register("password")} />
-        <button type="submit">로그인</button>
-        <a href="/auth/signup">회원가입</a>
+        <input {...register('email')} />
+        <input {...register('password')} />
+        <button type='submit'>로그인</button>
+        {/* <a href="/auth/signup">회원가입</a> */}
       </form>
     </Wrapper>
   );
