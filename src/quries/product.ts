@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { useRequest } from './../hooks/useRequest';
 import { request } from '../../utils/request';
 
 const getProductList = async (productId: string | undefined) => {
@@ -12,7 +12,7 @@ const getProductList = async (productId: string | undefined) => {
 };
 
 export const useGetProductBreadCrumb = (productId: string | undefined) => {
-  return useQuery(
+  return useRequest(
     [`product-breadcrumb-${productId}`],
     () => getProductList(productId),
     {
@@ -37,7 +37,7 @@ export const useGetProductInfo = (
   productId: string | undefined,
   vendoritemId: string | undefined
 ) => {
-  return useQuery(
+  return useRequest(
     [`product-${productId}-${vendoritemId}`],
     () => getProductInfo(productId, vendoritemId),
     {
@@ -64,7 +64,7 @@ export const useGetOhterProduct = (
   itemId: string | undefined,
   vendoritemId: string | undefined
 ) => {
-  return useQuery(
+  return useRequest(
     [`product-other-${productId}${itemId}-${vendoritemId}`],
     () => getOhterProduct(productId, itemId, vendoritemId),
     {
@@ -94,7 +94,7 @@ export const useGetProductDetails = (
   itemId: string | undefined,
   vendoritemId: string | undefined
 ) => {
-  return useQuery(
+  return useRequest(
     [`product-details-${productId}${itemId}-${vendoritemId}`],
     () => getProductDetails(productId, itemId, vendoritemId),
     {
