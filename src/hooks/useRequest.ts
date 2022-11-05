@@ -9,6 +9,6 @@ export const useRequest = (
   key: QueryKey,
   request: QueryFunction,
   option: UseQueryOptions
-) => {
+): any => {
   return useQuery(key, request, { ...option });
 };
