@@ -1,19 +1,14 @@
-## NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 2회차
+# NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 2회차
 
-<img width="752" alt="(220531)메인이미지_쿠팡클론코딩챌린지 (1)" src="https://user-images.githubusercontent.com/103182032/174029124-6e64d0c2-fc52-48c9-bd73-b91546682242.png" style="width:100%">
+- [챌린지 페이지](https://www.numble.it/84b74183-c72e-4502-91c9-e41fbf0aa7aa)
 
-[챌린지 페이지](https://www.numble.it/84b74183-c72e-4502-91c9-e41fbf0aa7aa)
-
-이번 챌린지에서는 쿠팡 서비스에서 사용되는 컴포넌트들을 만들어볼게요!
-
-총 네 개의 컴포넌트를 설계하며, 실무에서처럼 다양한 유즈케이스에 탄력적으로 대응할 수 있는 구조에 대해서 고민해보아요.
-
-만든 컴포넌트들은 Storybook을 사용해 누구나 확인할 수 있도록 배포할거에요.
+  - 해당링크에서 문제를 확인할 수 있습니다.
 
 ---
 
 ### StoryBook
-- [https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
+
+- [Storybook Chromatic 배포 URL](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
 
 ---
 
@@ -23,9 +18,9 @@
 
 - 페이지 라우팅의 경우에는 next.js의 `Link` 태그로 Button 컴포넌트를 감싸주고 `passHref`와 `href`값을 전달해주었는데 href의 값의 전달 유무에 따라서 `<a>` 태그의 사용 유무를 결정했습니다.
 
-- 그리고 Link 태그로 Button 컴포넌트를 감싸주는 경우에는 `ref`가 컴포넌트로 전달되기 때문에 `forwardRef`로 컴포넌트를 감싸주었는데 `ref`에 사용되는 타입과 `Props`의 타입을 지정해주었습니다.
+- 그리고 자식 컴포넌트가 함수형 컴포넌트인 경우 `ref`가 컴포넌트로 전달되어 `forwardRef`로 컴포넌트를 감싸주어야 했기 때문에 `forwardRef`로 컴포넌트를 감싸준 다음 `ref`에 사용되는 타입과 `Props`의 타입을 지정해주었습니다.
 
-```jsx
+```tsx
 // Button.tsx
 
 ...
@@ -55,19 +50,45 @@ const Button = forwardRef<HTMLAnchorElement, AnchorProps>(
 );
 
 export default Button;
+
+...
+
+
 ```
 
-```jsx
+<br/>
+
+- 정의한 컴포넌트를 아래처럼 사용하였습니다.
+
+```tsx
 // pages/login.tsx
 
 ...
 
+
 <Button primary>로그인</Button>
-      <Link href="/auth/signup" passHref>
-        <Button>회원가입</Button>
+<Link href="/auth/signup" passHref>
+  <Button>회원가입</Button>
 </Link>
 
 ...
+
+```
+
+<br/>
+
+```tsx
+// pages/signup.tsx
+
+...
+
+
+<Button primary type='submit'>
+  동의하고 회원가입하기
+</Button>
+
+...
+
 ```
 
 ---
