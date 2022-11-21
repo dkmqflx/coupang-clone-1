@@ -4,6 +4,9 @@ import CookieService from './cookie.service';
 import { userInfoType } from './types';
 
 class AuthService extends Service {
+  private static ACCESS_TOKEN_EXPIRE = 1;
+  private static REFRESH_TOKEN_EXPIRE = 1;
+
   async refresh() {
     const refreshToken = super.getRefreshToken();
 
@@ -17,8 +20,8 @@ class AuthService extends Service {
       },
     });
 
-    super.setAccessToken(data.access, 1);
-    super.setRefreshToken(data.refresh, 7);
+    super.setAccessToken(data.access, AuthService.ACCESS_TOKEN_EXPIRE);
+    super.setRefreshToken(data.refresh, AuthService.REFRESH_TOKEN_EXPIRE);
   }
 
   async signup({
@@ -36,14 +39,14 @@ class AuthService extends Service {
       agreements,
     });
 
-    super.setAccessToken(data.access, 1);
-    super.setRefreshToken(data.refresh, 7);
+    super.setAccessToken(data.access, AuthService.ACCESS_TOKEN_EXPIRE);
+    super.setRefreshToken(data.refresh, AuthService.REFRESH_TOKEN_EXPIRE);
   }
 
   async login({ email, password }: { email: string; password: string }) {
     const { data } = await super.post('/auth/login', { email, password });
-    super.setAccessToken(data.access, 1);
-    super.setRefreshToken(data.refresh, 7);
+    super.setAccessToken(data.access, AuthService.ACCESS_TOKEN_EXPIRE);
+    super.setRefreshToken(data.refresh, AuthService.REFRESH_TOKEN_EXPIRE);
   }
 }
 
