@@ -1,11 +1,6 @@
 import Service from './service';
-import HttpService, { httpImpl } from './http.service';
 
 class UserService extends Service {
-  constructor(public http: httpImpl) {
-    super(http);
-  }
-
   async me() {
     const accessToken = super.getAccessToken();
 
@@ -27,4 +22,4 @@ class UserService extends Service {
   }
 }
 
-export default new UserService(HttpService);
+export default new UserService();

@@ -1,10 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 import cookies from 'js-cookie';
-import { httpImpl } from './http.service';
+import HttpService from './http.service';
 
-class Service {
-  constructor(public http: httpImpl) {}
-
+class Service extends HttpService {
   getAccessToken(): string | undefined {
     return cookies.get('accessToken');
   }
@@ -22,11 +20,11 @@ class Service {
   }
 
   get(url: string, option?: AxiosRequestConfig) {
-    return this.http.get(url, option);
+    return super.get(url, option);
   }
 
   post(url: string, data: any, option?: AxiosRequestConfig) {
-    return this.http.post(url, data, option);
+    return super.post(url, data, option);
   }
 }
 

@@ -1,12 +1,6 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export interface httpImpl {
-  get(url: string, option?: AxiosRequestConfig): AxiosPromise;
-
-  post(url: string, data: any, option?: AxiosRequestConfig): AxiosPromise;
-}
-
-class HttpService implements httpImpl {
+class HttpService {
   private request;
 
   constructor() {
@@ -24,4 +18,4 @@ class HttpService implements httpImpl {
   }
 }
 
-export default new HttpService();
+export default HttpService;

@@ -1,10 +1,9 @@
 import Service from './service';
-import HttpService from './http.service';
 import { userInfoType } from './types';
 
 class AuthService extends Service {
   private static ACCESS_TOKEN_EXPIRE = 1;
-  private static REFRESH_TOKEN_EXPIRE = 1;
+  private static REFRESH_TOKEN_EXPIRE = 7;
 
   async refresh() {
     const refreshToken = super.getRefreshToken();
@@ -49,4 +48,4 @@ class AuthService extends Service {
   }
 }
 
-export default new AuthService(HttpService);
+export default new AuthService();
