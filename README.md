@@ -169,9 +169,11 @@ class AuthService {
 export default new AuthService();
 ```
 
+<br/>
+
 ### 수정 후
 
-- 또한 Service 클래스를 상속해서 부모 클래스의 post 요청과 관련된 함수를 불러서 사용했고 private static 변수로 사용해서 token 만료 시간을 클래스 차원에서 공통으로 사용할 수 있도록 했습니다.
+- Service 클래스를 상속해서 부모 클래스의 token 및 post 요청과 관련된 함수를 사용했고 private static 변수를 사용해서 token 만료 시간을 클래스 차원에서 공통으로 사용할 수 있도록 했습니다.
 
 ```ts
 // auth.service.ts
@@ -231,7 +233,7 @@ export default new AuthService();
 
 ### 수정 전
 
-```jsx
+```ts
 // user.service.ts
 
 import axios from 'axios';
@@ -267,10 +269,11 @@ class UserService {
 
 export default new UserService();
 ```
+<br/>
 
 ### 수정 후
 
-- 또한 Service 클래스를 상속해서 부모 클래스의 get 요청과 관련된 함수를 불러서 사용했습니다.
+- Service 클래스를 상속해서 부모 클래스의 토큰 및 get 요청과 관련된 함수를 불러서 사용했습니다.
 
 ```ts
 // user.service.ts
@@ -299,6 +302,8 @@ export default new UserService();
 ```
 
 ---
+
+<br/>
 
 ## 두번째 문제
 
