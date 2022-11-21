@@ -1,8 +1,8 @@
-import axios, { AxiosPromise } from "axios";
-import { userInfoType } from "./types";
+import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+import { userInfoType } from './types';
 
 export interface httpImpl {
-  get(url: string, accessToken?: string): AxiosPromise;
+  get(url: string, option?: AxiosRequestConfig): AxiosPromise;
 
   post(
     url: string,
@@ -20,19 +20,13 @@ class HttpService implements httpImpl {
     });
   }
 
-  get(url: string, accessToken?: string) {
-    return this.request({
-      method: "get",
-      url,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+  get(url: string, option?: AxiosRequestConfig) {
+    return this.request.get(url, option);
   }
 
   post(url: string, body: userInfoType | null, refreshToken?: string) {
     return this.request({
-      method: "post",
+      method: 'post',
       url,
       data: body,
       headers: {

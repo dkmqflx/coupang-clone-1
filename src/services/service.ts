@@ -1,13 +1,14 @@
-import { cookieImpl } from "./cookie.service";
-import { httpImpl } from "./http.service";
-import { userInfoType } from "./types";
+import { AxiosRequestConfig } from 'axios';
+import { cookieImpl } from './cookie.service';
+import { httpImpl } from './http.service';
+import { userInfoType } from './types';
 
 class Service {
   constructor(public cookie: cookieImpl, public http: httpImpl) {}
 
-  getAccessToken = () => {
+  getAccessToken() {
     return this.cookie.getAccessToken();
-  };
+  }
 
   getRefreshToken = () => {
     return this.cookie.getRefreshToken();
@@ -21,9 +22,9 @@ class Service {
     this.cookie.setRefreshToken(refreshToken, expires);
   };
 
-  get = (url: string, accessToken?: string) => {
-    return this.http.get(url, accessToken);
-  };
+  get(url: string, option?: AxiosRequestConfig) {
+    return this.http.get(url, option);
+  }
 
   post = (url: string, body: userInfoType | null, refreshToken?: string) => {
     return this.http.post(url, body, refreshToken);
