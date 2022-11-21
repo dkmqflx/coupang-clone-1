@@ -12,11 +12,7 @@ class AuthService extends Service {
       return;
     }
 
-    const { data } = await super.post('/auth/refresh', null, {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    });
+    const { data } = await super.post('/auth/refresh', null, refreshToken);
 
     super.setAccessToken(data.access, AuthService.ACCESS_TOKEN_EXPIRE);
     super.setRefreshToken(data.refresh, AuthService.REFRESH_TOKEN_EXPIRE);

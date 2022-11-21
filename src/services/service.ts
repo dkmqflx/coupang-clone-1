@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
 import cookies from 'js-cookie';
 import HttpService from './http.service';
 
@@ -23,8 +22,8 @@ class Service extends HttpService {
     return super.get(url, token);
   }
 
-  post(url: string, data: any, option?: AxiosRequestConfig) {
-    return super.post(url, data, option);
+  post(url: string, data: any | null, refreshToken?: string) {
+    return super.post(url, data, refreshToken);
   }
 }
 

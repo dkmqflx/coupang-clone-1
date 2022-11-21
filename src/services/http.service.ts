@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 class HttpService {
   private request;
@@ -17,8 +17,12 @@ class HttpService {
     });
   }
 
-  post(url: string, data: any, option?: AxiosRequestConfig) {
-    return this.request.post(url, data, option);
+  post(url: string, data: any | null, refreshToken?: string) {
+    return this.request.post(url, data, {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    });
   }
 }
 
