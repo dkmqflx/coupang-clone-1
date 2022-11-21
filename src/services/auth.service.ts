@@ -1,6 +1,5 @@
 import Service from './service';
 import HttpService from './http.service';
-import CookieService from './cookie.service';
 import { userInfoType } from './types';
 
 class AuthService extends Service {
@@ -50,4 +49,4 @@ class AuthService extends Service {
   }
 }
 
-export default new AuthService(CookieService, HttpService);
+export default new AuthService(HttpService);

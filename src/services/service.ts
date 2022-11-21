@@ -1,24 +1,24 @@
 import { AxiosRequestConfig } from 'axios';
-import { cookieImpl } from './cookie.service';
+import cookies from 'js-cookie';
 import { httpImpl } from './http.service';
 
 class Service {
-  constructor(public cookie: cookieImpl, public http: httpImpl) {}
+  constructor(public http: httpImpl) {}
 
-  getAccessToken() {
-    return this.cookie.getAccessToken();
+  getAccessToken(): string | undefined {
+    return cookies.get('accessToken');
   }
 
-  getRefreshToken() {
-    return this.cookie.getRefreshToken();
+  getRefreshToken(): string | undefined {
+    return cookies.get('refreshToken');
   }
 
   setAccessToken(accessToken: string, expires: number) {
-    this.cookie.setAccessToken(accessToken, expires);
+    cookies.set('accessToken', accessToken, { expires });
   }
 
   setRefreshToken(refreshToken: string, expires: number) {
-    this.cookie.setRefreshToken(refreshToken, expires);
+    cookies.set('refreshToken', refreshToken, { expires });
   }
 
   get(url: string, option?: AxiosRequestConfig) {

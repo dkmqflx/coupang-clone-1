@@ -1,8 +1,11 @@
 import Service from './service';
-import HttpService from './http.service';
-import CookieService from './cookie.service';
+import HttpService, { httpImpl } from './http.service';
 
 class UserService extends Service {
+  constructor(public http: httpImpl) {
+    super(http);
+  }
+
   async me() {
     const accessToken = super.getAccessToken();
 
@@ -24,4 +27,4 @@ class UserService extends Service {
   }
 }
 
-export default new UserService(CookieService, HttpService);
+export default new UserService(HttpService);
