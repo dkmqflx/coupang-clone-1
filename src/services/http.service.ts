@@ -9,8 +9,12 @@ class HttpService {
     });
   }
 
-  get(url: string, option?: AxiosRequestConfig) {
-    return this.request.get(url, option);
+  get(url: string, token?: string) {
+    return this.request.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   post(url: string, data: any, option?: AxiosRequestConfig) {

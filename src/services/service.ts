@@ -19,8 +19,8 @@ class Service extends HttpService {
     cookies.set('refreshToken', refreshToken, { expires });
   }
 
-  get(url: string, option?: AxiosRequestConfig) {
-    return super.get(url, option);
+  get(url: string, token?: string) {
+    return super.get(url, token);
   }
 
   post(url: string, data: any, option?: AxiosRequestConfig) {

@@ -7,11 +7,7 @@ class UserService extends Service {
     if (!accessToken) {
       return;
     }
-    const { data } = await super.get('/users/me', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const { data } = await super.get('/users/me', accessToken);
 
     return data;
   }
