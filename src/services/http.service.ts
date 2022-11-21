@@ -9,10 +9,10 @@ class HttpService {
     });
   }
 
-  get(url: string, token?: string) {
+  get(url: string, accessToken?: string) {
     return this.request.get(url, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
   }

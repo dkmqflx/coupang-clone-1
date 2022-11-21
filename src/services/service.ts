@@ -18,8 +18,8 @@ class Service extends HttpService {
     cookies.set('refreshToken', refreshToken, { expires });
   }
 
-  get(url: string, token?: string) {
-    return super.get(url, token);
+  get(url: string, accessToken?: string) {
+    return super.get(url, accessToken);
   }
 
   post(url: string, data: any | null, refreshToken?: string) {
