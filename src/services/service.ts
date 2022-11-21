@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { cookieImpl } from './cookie.service';
 import { httpImpl } from './http.service';
-import { userInfoType } from './types';
 
 class Service {
   constructor(public cookie: cookieImpl, public http: httpImpl) {}
@@ -10,25 +9,25 @@ class Service {
     return this.cookie.getAccessToken();
   }
 
-  getRefreshToken = () => {
+  getRefreshToken() {
     return this.cookie.getRefreshToken();
-  };
+  }
 
-  setAccessToken = (accessToken: string, expires: number) => {
+  setAccessToken(accessToken: string, expires: number) {
     this.cookie.setAccessToken(accessToken, expires);
-  };
+  }
 
-  setRefreshToken = (refreshToken: string, expires: number) => {
+  setRefreshToken(refreshToken: string, expires: number) {
     this.cookie.setRefreshToken(refreshToken, expires);
-  };
+  }
 
   get(url: string, option?: AxiosRequestConfig) {
     return this.http.get(url, option);
   }
 
-  post = (url: string, body: userInfoType | null, refreshToken?: string) => {
-    return this.http.post(url, body, refreshToken);
-  };
+  post(url: string, data: any, option?: AxiosRequestConfig) {
+    return this.http.post(url, data, option);
+  }
 }
 
 export default Service;

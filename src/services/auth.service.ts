@@ -1,51 +1,50 @@
-import Service from "./service";
-import HttpService, { httpImpl } from "./http.service";
-import CookieService, { cookieImpl } from "./cookie.service";
-import { userInfoType } from "./types";
+import Service from './service';
+import HttpService from './http.service';
+import CookieService from './cookie.service';
+import { userInfoType } from './types';
 
 class AuthService extends Service {
-  constructor(public cookie: cookieImpl, public http: httpImpl) {
-    super(CookieService, HttpService);
-  }
-
-  /** refreshToken을 이용해 새로운 토큰을 발급받습니다. */
-  refresh = async () => {
-    const refreshToken = this.getRefreshToken();
+  async refresh() {
+    const refreshToken = super.getRefreshToken();
 
     if (!refreshToken) {
       return;
     }
 
-    const { data } = await this.post("/auth/refresh", null, refreshToken);
-    this.setAccessToken(data.access, 1);
-    this.setRefreshToken(data.refresh, 7);
-  };
+    const { data } = await super.post('/auth/refresh', null, {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    });
 
-  /** 새로운 계정을 생성하고 토큰을 발급받습니다. */
-  signup = async ({
+    super.setAccessToken(data.access, 1);
+    super.setRefreshToken(data.refresh, 7);
+  }
+
+  async signup({
     email,
     password,
     name,
     phoneNumber,
     agreements,
-  }: userInfoType) => {
-    const { data } = await this.post("/auth/signup", {
+  }: userInfoType) {
+    const { data } = await super.post('/auth/signup', {
       email,
       password,
       name,
       phoneNumber,
       agreements,
     });
-    this.setAccessToken(data.access, 1);
-    this.setRefreshToken(data.refresh, 7);
-  };
 
-  /** 이미 생성된 계정의 토큰을 발급받습니다. */
-  login = async ({ email, password }: { email: string; password: string }) => {
-    const { data } = await this.post("/auth/login", { email, password });
-    this.setAccessToken(data.access, 1);
-    this.setRefreshToken(data.refresh, 7);
-  };
+    super.setAccessToken(data.access, 1);
+    super.setRefreshToken(data.refresh, 7);
+  }
+
+  async login({ email, password }: { email: string; password: string }) {
+    const { data } = await super.post('/auth/login', { email, password });
+    super.setAccessToken(data.access, 1);
+    super.setRefreshToken(data.refresh, 7);
+  }
 }
 
 export default new AuthService(CookieService, HttpService);
