@@ -1,6 +1,35 @@
-import React, { forwardRef } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import React, { forwardRef } from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
+type AnchorProps = React.HTMLProps<HTMLAnchorElement> & {
+  primary?: boolean;
+  href?: 'string' | undefined;
+  children: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
+};
+
+const Button = forwardRef<HTMLAnchorElement, AnchorProps>(
+  ({ primary = false, href, children, type = 'submit' }: AnchorProps, ref) => {
+    return href ? (
+      <ButtonWrapper>
+        <a href={href} ref={ref}>
+          <ButtonStyled type='button' primary={primary}>
+            {children}
+          </ButtonStyled>
+        </a>
+      </ButtonWrapper>
+    ) : (
+      <ButtonWrapper>
+        <ButtonStyled type={type} primary={primary}>
+          {children}
+        </ButtonStyled>
+      </ButtonWrapper>
+    );
+  }
+);
+
+export default Button;
 
 const ButtonWrapper = styled.div`
   max-width: 460px;
@@ -38,32 +67,3 @@ const ButtonStyled = styled.button<{ primary: boolean | undefined }>`
   font-weight: 700;
   cursor: pointer;
 `;
-
-type AnchorProps = React.HTMLProps<HTMLAnchorElement> & {
-  primary?: boolean;
-  href?: "string" | undefined;
-  children: string;
-  type?: "button" | "submit" | "reset" | undefined;
-};
-
-const Button = forwardRef<HTMLAnchorElement, AnchorProps>(
-  ({ primary = false, href, children, type = "submit" }: AnchorProps, ref) => {
-    return href ? (
-      <ButtonWrapper>
-        <a href={href} ref={ref}>
-          <ButtonStyled type="button" primary={primary}>
-            {children}
-          </ButtonStyled>
-        </a>
-      </ButtonWrapper>
-    ) : (
-      <ButtonWrapper>
-        <ButtonStyled type={type} primary={primary}>
-          {children}
-        </ButtonStyled>
-      </ButtonWrapper>
-    );
-  }
-);
-
-export default Button;
