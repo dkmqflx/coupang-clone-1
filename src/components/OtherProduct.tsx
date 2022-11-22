@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
-import { useGetOhterProduct } from '../quries/product';
+import { useGetOtherProduct } from '../quries/product';
 import { otherProductType } from '../../types/product';
 import { paramsType } from '../../types/params';
 import styled from '@emotion/styled';
 import { Space, Rate, Button } from 'antd';
 
 const OtherProduct = ({ productId, vendoritemId, itemId }: paramsType) => {
-  const { data } = useGetOhterProduct(productId, itemId, vendoritemId);
+  const { data } = useGetOtherProduct(productId, itemId, vendoritemId);
 
   if (!data) return null;
 

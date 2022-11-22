@@ -24,7 +24,7 @@ export const useGetProductInfo = (
   );
 };
 
-export const useGetOhterProduct = (
+export const useGetOtherProduct = (
   productId: string | undefined,
   itemId: string | undefined,
   vendoritemId: string | undefined
