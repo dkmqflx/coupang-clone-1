@@ -1,8 +1,51 @@
-import React, { forwardRef } from "react";
-import Message from "../Message";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { IconType } from "react-icons";
+import React, { forwardRef } from 'react';
+import Message from '../Message';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { IconType } from 'react-icons';
+
+type InputProps = React.HTMLProps<HTMLInputElement> & {
+  placeholder?: string;
+  icon?: IconType;
+  type?: string | undefined;
+  errorMessage?: string;
+};
+
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      placeholder,
+      icon: Icon,
+      type = 'text',
+      onChange,
+      errorMessage,
+      name,
+    }: InputProps,
+    ref
+  ) => {
+    return (
+      <InputWrapper>
+        <LabelStyled htmlFor={name} error={errorMessage ? true : false}>
+          {Icon && (
+            <IconeWrapper>
+              <Icon></Icon>
+            </IconeWrapper>
+          )}
+          <InputStyled
+            onChange={onChange}
+            ref={ref}
+            name={name}
+            placeholder={placeholder}
+            type={type}
+          />
+        </LabelStyled>
+        {errorMessage && <Message message={errorMessage}></Message>}
+      </InputWrapper>
+    );
+  }
+);
+
+export default Input;
 
 const InputWrapper = styled.div`
   max-width: 460px;
@@ -16,7 +59,7 @@ const LabelStyled = styled.label<{ error: boolean }>`
   border: 1px solid #ccc;
 
   &:focus-within {
-    border-bottom: 2px solid ${({ error }) => (error ? " #e52528" : "#0074e9")};
+    border-bottom: 2px solid ${({ error }) => (error ? ' #e52528' : '#0074e9')};
   }
 
   ${({ error }) =>
@@ -54,46 +97,3 @@ const InputStyled = styled.input`
   width: 100%;
   outline: none;
 `;
-
-type InputProps = React.HTMLProps<HTMLInputElement> & {
-  placeholder?: string;
-  icon?: IconType;
-  type?: string | undefined;
-  errorMessage?: string;
-};
-
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      placeholder,
-      icon: Icon,
-      type = "text",
-      onChange,
-      errorMessage,
-      name,
-    }: InputProps,
-    ref
-  ) => {
-    return (
-      <InputWrapper>
-        <LabelStyled htmlFor={name} error={errorMessage ? true : false}>
-          {Icon && (
-            <IconeWrapper>
-              <Icon></Icon>
-            </IconeWrapper>
-          )}
-          <InputStyled
-            onChange={onChange}
-            ref={ref}
-            name={name}
-            placeholder={placeholder}
-            type={type}
-          />
-        </LabelStyled>
-        {errorMessage && <Message message={errorMessage}></Message>}
-      </InputWrapper>
-    );
-  }
-);
-
-export default Input;

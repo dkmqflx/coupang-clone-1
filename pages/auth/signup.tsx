@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { MultipleFieldErrors, useForm } from 'react-hook-form';
 import Button from '../../src/components/common/Button/Button';
 import Input from '../../src/components/common/Input/Input';
 import CheckBox from '../../src/components/common/CheckBox/CheckBox';
@@ -97,13 +97,15 @@ export default function SignupPage() {
     all,
   }: formType) => {};
 
-  const getPasswordErrorMessage = () => {
-    if (errors.password?.types?.passwordCheck !== true) {
-      return '영문/숫자/특수문자 2가지 이상 조합 (8~20자)';
+  const getPasswordErrorMessage = (types: MultipleFieldErrors | undefined) => {
+    if (!types) return;
+
+    if (types.passwordCheck !== true) {
+      return `${types.passwordCheck}`;
     }
 
-    if (errors.password?.types?.compareEmail !== true) {
-      return '아이디(이메일) 제외.';
+    if (types.compareEmail !== true) {
+      return `${types.compareEmail}`;
     }
   };
 
@@ -224,7 +226,7 @@ export default function SignupPage() {
       clearErrors('all');
     }
   };
-
+  console.log(errors);
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -258,7 +260,9 @@ export default function SignupPage() {
                   : '',
             },
           })}
-          errorMessage={errors.password && getPasswordErrorMessage()}
+          errorMessage={
+            errors.password && getPasswordErrorMessage(errors.password.types)
+          }
           placeholder='비밀번호'
           icon={MdLockOutline}
         />
