@@ -24,3 +24,17 @@ export type optionalAgreementType = {
 };
 
 export type formType = inputType & agreementType & optionalAgreementType;
+
+export type mandatoryTerms =
+  | 'age'
+  | 'termAndConditions'
+  | 'financialTransactions'
+  | 'personalInformation'
+  | 'personalInformationToThirdParty';
+
+export type optionalTerms =
+  | 'personalInformationForMarketing'
+  | 'advertisingAll'
+  | 'advertisingEmail'
+  | 'sms'
+  | 'appPush';

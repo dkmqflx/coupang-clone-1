@@ -3,7 +3,12 @@ import { MultipleFieldErrors, useForm } from 'react-hook-form';
 import Button from '../../src/components/common/Button/Button';
 import Input from '../../src/components/common/Input/Input';
 import CheckBox from '../../src/components/common/CheckBox/CheckBox';
-import { optionalAgreementType, formType } from '../../src/types/signup';
+import {
+  optionalAgreementType,
+  formType,
+  mandatoryTerms,
+  optionalTerms,
+} from '../../src/types/signup';
 import {
   MdOutlineEmail,
   MdLockOutline,
@@ -104,17 +109,11 @@ export default function SignupPage() {
     }
   };
 
-  const checkMandatoryTerms = (
-    name:
-      | 'age'
-      | 'termAndConditions'
-      | 'financialTransactions'
-      | 'personalInformation'
-      | 'personalInformationToThirdParty'
-  ) => {
+  const checkMandatoryTerms = (name: mandatoryTerms) => {
     setValue(name, !getValues(name));
 
     const value = getValues(name);
+
     const mandatoryTerms = getValues([
       'age',
       'termAndConditions',
@@ -167,14 +166,7 @@ export default function SignupPage() {
     }
   };
 
-  const checkOptionalTerms = (
-    name:
-      | 'personalInformationForMarketing'
-      | 'advertisingAll'
-      | 'advertisingEmail'
-      | 'sms'
-      | 'appPush'
-  ) => {
+  const checkOptionalTerms = (name: optionalTerms) => {
     setValue(name, !getValues(name));
     const value = getValues(name);
 
