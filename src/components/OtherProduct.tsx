@@ -6,7 +6,7 @@ import { paramsType } from '../../types/params';
 import styled from '@emotion/styled';
 import { Space, Rate, Button } from 'antd';
 
-const OhterProduct = ({ productId, vendoritemId, itemId }: paramsType) => {
+const OtherProduct = ({ productId, vendoritemId, itemId }: paramsType) => {
   const { data } = useGetOhterProduct(productId, itemId, vendoritemId);
 
   if (!data) return null;
@@ -85,7 +85,7 @@ const OhterProduct = ({ productId, vendoritemId, itemId }: paramsType) => {
   );
 };
 
-export default OhterProduct;
+export default OtherProduct;
 
 const Product = styled.li`
   display: flex;

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import ProductBreadCrumb from '../../src/components/ProductBreadCrumb';
 import ProductInfo from '../../src/components/ProductInfo';
-import OhterProduct from '../../src/components/OhterProduct';
+import OtherProduct from '../../src/components/OtherProduct';
 import styled from '@emotion/styled';
 import ProductDetails from '../../src/components/ProductDetails';
 import HeadMeta from '../../src/components/HeadMeta';
@@ -22,11 +22,11 @@ export default function VendoritemPage() {
         productId={productId}
         vendoritemId={vendoritemId}
       ></ProductInfo>
-      <OhterProduct
+      <OtherProduct
         productId={productId}
         vendoritemId={vendoritemId}
         itemId={itemId}
-      ></OhterProduct>
+      ></OtherProduct>
       <ProductDetails
         productId={productId}
         vendoritemId={vendoritemId}
