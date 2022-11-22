@@ -29,6 +29,8 @@ const Button = forwardRef<HTMLAnchorElement, AnchorProps>(
   }
 );
 
+Button.displayName = 'Button';
+
 export default Button;
 
 const ButtonWrapper = styled.div`
