@@ -1,14 +1,14 @@
-import {
-  QueryKey,
-  QueryFunction,
-  UseQueryOptions,
-  useQuery,
-} from 'react-query';
+import { useQuery } from 'react-query';
+
+type QueryOptions = {
+  refetchInterval?: number;
+  enabled?: boolean;
+};
 
 export const useRequest = (
-  key: QueryKey,
-  request: QueryFunction,
-  option: UseQueryOptions
-): any => {
+  key: string | string[],
+  request: () => Promise<any>,
+  option?: QueryOptions
+) => {
   return useQuery(key, request, { ...option });
 };
