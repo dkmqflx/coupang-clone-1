@@ -3,7 +3,7 @@ import { MultipleFieldErrors, useForm } from 'react-hook-form';
 import Button from '../../src/components/common/Button/Button';
 import Input from '../../src/components/common/Input/Input';
 import CheckBox from '../../src/components/common/CheckBox/CheckBox';
-
+import { optionalAgreementType, formType } from '../../src/types/signup';
 import {
   MdOutlineEmail,
   MdLockOutline,
@@ -12,33 +12,6 @@ import {
   MdOutlinePhoneIphone,
 } from 'react-icons/md';
 import styled from '@emotion/styled';
-
-type inputType = {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  name: string;
-  phoenNumber: string;
-};
-
-type agreementType = {
-  all: boolean;
-  age: boolean;
-  termAndConditions: boolean;
-  financialTransactions: boolean;
-  personalInformation: boolean;
-  personalInformationToThirdParty: boolean;
-};
-
-type optionalAgreementType = {
-  personalInformationForMarketing: boolean;
-  advertisingAll: boolean;
-  advertisingEmail: boolean;
-  sms: boolean;
-  appPush: boolean;
-};
-
-type formType = inputType & agreementType & optionalAgreementType;
 
 const ALL_TERMS_AND_CONDITIONS = [
   'age',
@@ -226,7 +199,7 @@ export default function SignupPage() {
       clearErrors('all');
     }
   };
-  console.log(errors);
+
   return (
     <Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
