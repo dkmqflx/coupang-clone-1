@@ -6,7 +6,11 @@
 
 ---
 
-### StoryBook
+### 배포
+
+- [로그인 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/login)
+
+- [회원가입 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/signup)
 
 - [Storybook Chromatic 배포 URL](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
 
@@ -92,6 +96,8 @@ export default Button;
 ```
 
 ---
+
+<br/>
 
 ## Input
 
@@ -205,7 +211,9 @@ email.current = watch('email');
 
 ---
 
-## Check
+<br/>
+
+## CheckBox
 
 - `CheckBox` 컴포넌트도`react-hook-form`의 유효성 검증을 할 수 있는 `register`를 `props`로 전달해주었기 때문에 `forwardRef`를 사용해서 `ref`를 전달받는 방식으로 처리해주었습니다.
 
@@ -243,9 +251,9 @@ email.current = watch('email');
 
 - signup 페이지에서 체크박스에 해당하는 항목들은 `watch` 함수를 사용해서 참조할 수 있도록 했습니다.
 
-- 그 이유는 input 입력 값들은 `setValue` 함수를 사용해서 값을 설정하고 `getValues` 함수로 값을 가져오는 방식으로 처리하고 있습니다.
+- 그 이유는 CheckBox 컴포넌트에사 사용되는 input 태그의 체크 여부를 확인하기 위한 값들은 `setValue` 함수를 사용해서 값을 설정하고 `getValues` 함수로 값을 가져오는 방식으로 처리하고 있기 때문입니다.
 
-- 이 때 `getValues`로 가져오는 값이 변경된다고 해서 다시 렌더링되지 않지만 `watch`로 해당 값들을 참조하면 `watch`가 참조하는 값의 변화에 따라 컴포넌트가 다시 렌더링 되어서 변화된 값에 따라 UI도 변경되기 때문입니다.
+- `getValues`로 가져오는 값이 변경된다고 해서 다시 렌더링되지 않지만 `watch`로 해당 값들을 참조하면 `watch`가 참조하는 값의 변화에 따라 컴포넌트가 다시 렌더링 되어서 변화된 값에 따라 UI도 변경됩니다.
 
 - 즉 `watch`로 필요한 값들을 참조해야지 `setValue`를 통해서 값이 변경되었을 때 다시 렌더링 되기 때문에 필요한 값들을 `watch`로 참조하였습니다.
 
@@ -256,8 +264,6 @@ email.current = watch('email');
 
 const agreementAll = useRef<boolean[]>();
 
-  password.current = watch('password');
-  email.current = watch('email');
   agreementAll.current = watch([
     'age',
     'termAndConditions',
