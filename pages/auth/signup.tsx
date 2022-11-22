@@ -12,6 +12,10 @@ import {
   MdOutlinePhoneIphone,
 } from 'react-icons/md';
 import styled from '@emotion/styled';
+import {
+  CheckBoxGroupWrapper,
+  CheckBoxTermsWrapper,
+} from '../../src/components/common/CheckBox/CheckBox.style';
 
 const ALL_TERMS_AND_CONDITIONS = [
   'age',
@@ -278,7 +282,7 @@ export default function SignupPage() {
           icon={MdOutlinePhoneIphone}
         />
 
-        <CheckBoxWrapper>
+        <CheckBoxGroupWrapper>
           <CheckBox
             {...register('all', {
               validate: () => {
@@ -398,7 +402,7 @@ export default function SignupPage() {
               />
             </CheckBox>
           </CheckBoxTermsWrapper>
-        </CheckBoxWrapper>
+        </CheckBoxGroupWrapper>
 
         <Button primary type='submit'>
           동의하고 회원가입하기
@@ -415,13 +419,4 @@ const Wrapper = styled.div`
   align-items: center;
   overflow-y: auto;
   margin-top: 20px;
-`;
-
-const CheckBoxWrapper = styled.div`
-  margin: 18px 0;
-`;
-
-const CheckBoxTermsWrapper = styled.div`
-  padding: 14px;
-  border: 1px solid #ccc;
 `;

@@ -1,56 +1,15 @@
-import React, { forwardRef } from "react";
-import Message from "../Message";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { MdKeyboardArrowRight } from "react-icons/md";
-
-const CheckBoxContaienr = styled.div`
-  margin: 8px 0;
-  max-width: 460px;
-`;
-const CheckBoxWrapper = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Label = styled.label`
-  display: flex;
-  cursor: pointer;
-`;
-
-const Input = styled.input`
-  cursor: pointer;
-`;
-
-const Text = styled.span<{ bold: boolean | undefined }>`
-  display: block;
-  line-height: 1.4;
-  word-break: break-all;
-
-  font-size: 14px;
-  font-weight: 500;
-  color: #333333;
-
-  ${({ bold }) =>
-    bold &&
-    css`
-      font-weight: bold;
-    `}
-`;
-
-const SubText = styled.span`
-  font-size: 12px;
-  line-height: 1.4;
-  color: #555;
-  display: block;
-  margin: 6px 0 6px 26px;
-`;
-
-const ChildrenWrapper = styled.div`
-  padding-left: 22px;
-`;
+import React, { forwardRef } from 'react';
+import Message from '../Message';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import {
+  CheckBoxContaienr,
+  CheckBoxWrapper,
+  Label,
+  Input,
+  Text,
+  SubText,
+  ChildrenWrapper,
+} from '../CheckBox/CheckBox.style';
 
 type CheckboxTypeProps = React.HTMLProps<HTMLInputElement> & {
   text: string;
@@ -80,11 +39,11 @@ const CheckBox = forwardRef<HTMLInputElement, CheckboxTypeProps>(
     return (
       <CheckBoxContaienr>
         <CheckBoxWrapper>
-          <Label htmlFor="scales">
+          <Label htmlFor='scales'>
             <Input
               ref={ref}
               onChange={onChange}
-              type="checkbox"
+              type='checkbox'
               name={name}
               checked={checked}
             />
