@@ -2,7 +2,7 @@
 
   - 해당링크에서 문제를 확인할 수 있습니다.
 
-- [배포 URL](https://63663d83d644a75437bc70fa--dancing-biscotti-24688b.netlify.app/products/1?vendoritemId=1&itemId=1)
+- [배포 URL](https://dancing-biscotti-24688b.netlify.app/products/1?vendoritemId=1&itemId=1)
 
 ---
 
