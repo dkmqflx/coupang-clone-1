@@ -1,14 +1,7 @@
 import axios from 'axios';
+import Service from './service';
 
-class Product {
-  private request;
-
-  constructor() {
-    this.request = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_API_HOST,
-    });
-  }
-
+class Product extends Service {
   async getProductList(productId: string | undefined) {
     const { data } = await axios({
       url: `/api/products/${productId}/breadcrumb-gnbmenu`,
@@ -22,10 +15,9 @@ class Product {
     productId: string | undefined,
     vendoritemId: string | undefined
   ) {
-    const { data } = await this.request({
-      url: `/api/products/${productId}/vendoritems/${vendoritemId}`,
-      method: 'get',
-    });
+    const { data } = await super.get(
+      `/api/products/${productId}/vendoritems/${vendoritemId}`
+    );
 
     return data;
   }
@@ -35,10 +27,9 @@ class Product {
     itemId: string | undefined,
     vendoritemId: string | undefined
   ) {
-    const { data } = await this.request({
-      url: `/api/products/${productId}/brand-sdp/widget/brand-sdp?itemId=${itemId}&vendoritemId=${vendoritemId}`,
-      method: 'get',
-    });
+    const { data } = await super.get(
+      `/api/products/${productId}/brand-sdp/widget/brand-sdp?itemId=${itemId}&vendoritemId=${vendoritemId}`
+    );
 
     return data;
   }
@@ -48,10 +39,9 @@ class Product {
     itemId: string | undefined,
     vendoritemId: string | undefined
   ) {
-    const { data } = await this.request({
-      url: `/api/products/${productId}/items/${itemId}/vendoritems/${vendoritemId}`,
-      method: 'get',
-    });
+    const { data } = await super.get(
+      `/api/products/${productId}/items/${itemId}/vendoritems/${vendoritemId}`
+    );
 
     return data;
   }
