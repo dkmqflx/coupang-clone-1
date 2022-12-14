@@ -10,8 +10,4 @@
 
 - [3회차](https://github.com/dkmqflx/coupang-clone-1/tree/stage3)
 
-- [4회차](https://github.com/dkmqflx/coupang-clone-1/tree/stage4)
 
-- [5회차](https://github.com/dkmqflx/coupang-clone-1/tree/stage5)
-
-- [6회차](https://github.com/dkmqflx/coupang-clone-1/tree/stage6)
