@@ -1,8 +1,119 @@
 # NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 1회차
 
-- [1회차 : 로그인 페이지 - 좋은 ‘모듈' 설계하고 구현해보기](https://thoughtful-arch-8c2.notion.site/2e386a766d1348fc8a2774055b310386)
+<details>
+  <summary style='font-size:20px'>과제보기</summary>
 
-  - 해당링크에서 첫번째, 두번째 문제를 확인할 수 있습니다.
+  <div markdown="1">
+
+  <br/>
+
+## 첫번째 문제
+
+### AuthService
+
+- AuthService는 인증 관련 비즈니스 로직들을 다루는 모듈입니다.
+
+- 기본적인 코드는 아래와 같습니다.
+
+```tsx
+class AuthService {
+  /** refreshToken을 이용해 새로운 토큰을 발급받습니다. */
+  async refresh() {
+    const refreshToken = cookies.get('refreshToken');
+    if (!refreshToken) {
+      return;
+    }
+
+    const { data } = await axios.post(
+      process.env.NEXT_PUBLIC_API_HOST + '/auth/refresh',
+      null,
+      {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      }
+    );
+
+    cookies.set('accessToken', data.access, { expires: 1 });
+    cookies.set('refreshToken', data.refresh, { expires: 7 });
+  }
+
+  /** 새로운 계정을 생성하고 토큰을 발급받습니다. */
+  async signup(
+    email: string,
+    password: string,
+    name: string,
+    phoneNumber: string,
+    agreements: SignupAgreements
+  ) {
+    const { data } = await axios.post(
+      process.env.NEXT_PUBLIC_API_HOST + '/auth/signup',
+      { email, password, name, phoneNumber, agreements }
+    );
+
+    cookies.set('accessToken', data.access, { expires: 1 });
+    cookies.set('refreshToken', data.refresh, { expires: 7 });
+  }
+
+  /** 이미 생성된 계정의 토큰을 발급받습니다. */
+  async login(email: string, password: string) {
+    const { data } = await axios.post(
+      process.env.NEXT_PUBLIC_API_HOST + '/auth/login',
+      { email, password }
+    );
+
+    cookies.set('accessToken', data.access, { expires: 1 });
+    cookies.set('refreshToken', data.refresh, { expires: 7 });
+  }
+}
+
+export default new AuthService();
+```
+
+- 가장 먼저 제시된 코드를 리팩토링 해보아요.
+
+- 어느 곳을 고치면 좋을까요? 그 이유는 무엇일까요?
+
+- 리팩토링 이후엔 재사용성, 확장성을 고려해 개선된 모듈을 설계해볼거에요.
+
+- 이미 추가된 UserService와, 이후 추가될 수 있을 OrderService, ItemService 등을 편하고 직관적으로 대응할 수 있도록, 하나의 부모클래스를 extend 하는 방법으로 구현해보아요!
+
+---
+
+<br/>
+
+## 두번째 문제
+
+### useRequest
+
+- useRequest는 API request를 보내주는 모듈입니다.
+
+- react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다!
+
+- 앞서 구현한 Service에 useQuery를 그대로 적용한 코드는 아래와 같습니다. (pages/index.tsx 경로에서 확인하실 수 있어요
+
+```tsx
+import { useQuery } from 'react-query';
+
+import { UserService } from '../src/services';
+
+const Home: NextPage = () => {
+  const { data: me } = useQuery('me', UserService.me, {
+    refetchInterval: 500,
+  });
+
+  console.log('내 정보입니다', me);
+
+  // ...
+};
+```
+
+- 다른 여러 요청들에도 공통적으로 간편하게 적용할 수 있는 인터페이스를 고민하고 구현해보아요!
+
+  </div>
+</details>
+
+---
 
 <br/>
 
