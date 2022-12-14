@@ -39,7 +39,7 @@
 
 ### Button
 
-<img src='images/image1.png'>
+<img src='images/image1.png' width='500px'>
 
 - (위의 유즈케이스 외에는 고려하지 않아도 됩니다!)
 
@@ -55,8 +55,9 @@
 
 ### Input
 
-<img src='images/image2.png'>
-<img src='images/image3.png'>
+<img src='images/image2.png' width='500px'>
+<br/>
+<img src='images/image3.png' width='500px'>
 
 - Input 컴포넌트의 요구사항은 다음과 같습니다.
 
@@ -72,7 +73,7 @@
 
 ### Checkbox
 
-<img src='images/image4.png'>
+<img src='images/image4.png'  width='500px'>
 
 - react-hook-form 대응, font bold 처리, description 유무, 포함관계 등의 요구사항을 매끄럽게 만족시킬 수 있는 방법을 고민해보아요.
 
