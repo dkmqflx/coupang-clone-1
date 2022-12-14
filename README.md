@@ -1,18 +1,101 @@
 # NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 2회차
 
-- [챌린지 페이지](https://www.numble.it/84b74183-c72e-4502-91c9-e41fbf0aa7aa)
+### 배포
 
-  - 해당링크에서 문제를 확인할 수 있습니다.
+[로그인 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/login)
+
+[회원가입 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/signup)
+
+[Storybook Chromatic 배포 URL](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
+
+<details>
+  <summary style='font-size:20px'>과제보기</summary>
+
+  <div markdown="1">
+
+  <br/>
+
+## 미션 소개
+
+- 쿠팡 서비스의 [로그인 페이지](https://login.coupang.com/login/login.pang)와 [회원가입 페이지](https://login.coupang.com/login/memberJoinFrm.pang)에서 사용되는 컴포넌트들을 만들어볼 것입니다.
+
+- 총 네 개의 컴포넌트를 설계하며, 실무에서처럼 다양한 유즈케이스에 탄력적으로 대응할 수 있는 구조에 대해서 고민해봅니다.
+
+- 설계한 컴포넌트를 구현하고, 서로의 코드를 통해 더 나은 방법에 대해서 생각해봅니다.
+
+- 만든 컴포넌트들은 Storybook을 사용해 누구나 확인할 수 있도록 배포합니다.
+
+**만들어볼 컴포넌트**
+
+1. Button
+
+2. Input
+
+3. Check
+
+4. CheckGroup
 
 ---
 
-### 배포
+### Button
 
-- [로그인 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/login)
+<img src='images/image1.png'>
 
-- [회원가입 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/signup)
+- (위의 유즈케이스 외에는 고려하지 않아도 됩니다!)
 
-- [Storybook Chromatic 배포 URL](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
+- 쿠팡서비스에서 Button 컴포넌트가 활용되는 방식은 아래와 같습니다.
+
+1. 일반적인 button element
+
+2. form의 submit
+
+3. a tag를 이용한 페이지 라우팅 (next/link 사용)
+
+---
+
+### Input
+
+<img src='images/image2.png'>
+<img src='images/image3.png'>
+
+- Input 컴포넌트의 요구사항은 다음과 같습니다.
+
+1. react-hook-form의 register를 사용할 수 있어야 한다.
+
+2. focus시 border-bottom이 파란색으로, error시 빨간색으로 바뀐다.
+
+3. 좌측에 icon이 표시된다.
+
+4. invalid한 값 입력 시 적절한 에러 메세지를 보여준다.
+
+---
+
+### Checkbox
+
+<img src='images/image4.png'>
+
+- react-hook-form 대응, font bold 처리, description 유무, 포함관계 등의 요구사항을 매끄럽게 만족시킬 수 있는 방법을 고민해보아요.
+
+---
+
+### Page에서 사용하기
+
+- 구현한 컴포넌트들을 활용해 LoginPage, SignupPage를 구현해보아요
+
+- 컴포넌트 외의 부분들은 평가에 포함되지 않습니다.
+
+- 스타일링은 완전히 동일할 필요 없이, 육안상으로 유사하게 느껴지는 정도면 괜찮습니다.
+
+---
+
+### Storybook을 설치하고 Chromatic으로 배포하기
+
+- 완성된 Button, Input, Check 컴포넌트의 스토리 파일을 작성해보세요! (stories 파일은 컴포넌트와 같은 경로에 배치하는 것을 추천합니다.)
+
+- Chromatic에 스토리북을 배포하고, url을 공유해주세요
+
+  </div>
+</details>
 
 ---
 
