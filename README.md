@@ -1,6 +1,4 @@
-# NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 2회차
-
-### 배포
+## 배포
 
 [로그인 페이지](https://stalwart-arithmetic-64bd26.netlify.app/auth/login)
 
@@ -8,14 +6,11 @@
 
 [Storybook Chromatic 배포 URL](https://634f61794a50407deecee4b4-zcznhsvkzt.chromatic.com/?path=/story/button--agreement-sign-up)
 
-<details>
-  <summary style='font-size:20px'>과제보기</summary>
+---
 
-  <div markdown="1">
+<br/>
 
-  <br/>
-
-## 미션 소개
+## 구현 과제
 
 - 쿠팡 서비스의 [로그인 페이지](https://login.coupang.com/login/login.pang)와 [회원가입 페이지](https://login.coupang.com/login/memberJoinFrm.pang)에서 사용되는 컴포넌트들을 만들어볼 것입니다.
 
@@ -25,7 +20,7 @@
 
 - 만든 컴포넌트들은 Storybook을 사용해 누구나 확인할 수 있도록 배포합니다.
 
-**만들어볼 컴포넌트**
+### 만들어볼 컴포넌트
 
 1. Button
 
@@ -41,7 +36,7 @@
 
 <img src='images/image1.png' width='500px'>
 
-- (위의 유즈케이스 외에는 고려하지 않아도 됩니다!)
+- 위의 유즈케이스 외에는 고려하지 않아도 됩니다
 
 - 쿠팡서비스에서 Button 컴포넌트가 활용되는 방식은 아래와 같습니다.
 
@@ -56,7 +51,9 @@
 ### Input
 
 <img src='images/image2.png' width='500px'>
+
 <br/>
+
 <img src='images/image3.png' width='500px'>
 
 - Input 컴포넌트의 요구사항은 다음과 같습니다.
@@ -75,32 +72,29 @@
 
 <img src='images/image4.png'  width='500px'>
 
-- react-hook-form 대응, font bold 처리, description 유무, 포함관계 등의 요구사항을 매끄럽게 만족시킬 수 있는 방법을 고민해보아요.
+- react-hook-form 대응, font bold 처리, description 유무, 포함관계 등의 요구사항을 구현합니다.
 
 ---
 
 ### Page에서 사용하기
 
-- 구현한 컴포넌트들을 활용해 LoginPage, SignupPage를 구현해보아요
-
-- 컴포넌트 외의 부분들은 평가에 포함되지 않습니다.
-
-- 스타일링은 완전히 동일할 필요 없이, 육안상으로 유사하게 느껴지는 정도면 괜찮습니다.
+- 구현한 컴포넌트들을 활용해 LoginPage, SignupPage를 구현합니다.
 
 ---
 
 ### Storybook을 설치하고 Chromatic으로 배포하기
 
-- 완성된 Button, Input, Check 컴포넌트의 스토리 파일을 작성해보세요! (stories 파일은 컴포넌트와 같은 경로에 배치하는 것을 추천합니다.)
+- 완성된 Button, Input, Check 컴포넌트의 스토리 파일을 작성합니다. (stories 파일은 컴포넌트와 같은 경로에 배치하는 것을 추천합니다.)
 
 - Chromatic에 스토리북을 배포하고, url을 공유해주세요
 
-  </div>
-</details>
+<br/>
 
 ---
 
-## Button
+## 구현 결과
+
+### Button
 
 - 우선 로그인, 동의하고 가입하기 버튼과 회원가입 버튼의 스타일이 달랐기 때문에 primary 속성의 전달 유무에 따라서 Button의 스타일이 정해지도록 처리했습니다.
 
@@ -183,11 +177,11 @@ export default Button;
 
 <br/>
 
-## Input
+### Input
 
 - `Input` 컴포넌트의 경우에는 `react-hook-form`과 함께 사용하였습니다
 
-- `react-hook-form`의 유효성 검증을 할 수 있는 `register`를 `props`로 전달해주었기 때문에 `Input` 컴포넌트에서도 `forwardRef`를 사용해서 `ref`를 전달받는 방식으로 처리해주었습니다.
+- `react-hook-form`의 유효성 검증을 할 수 있는 `register`를 `props`로 전달하게 되면 `ref`도 함께 전달되기 때문에 `Input` 컴포넌트에서도 `forwardRef`를 사용해서 `ref`를 전달받는 방식으로 처리해주었습니다.
 
 ```jsx
 // Input.tsx
@@ -335,7 +329,7 @@ email.current = watch('email');
 
 - signup 페이지에서 체크박스에 해당하는 항목들은 `watch` 함수를 사용해서 참조할 수 있도록 했습니다.
 
-- 그 이유는 CheckBox 컴포넌트에사 사용되는 input 태그의 체크 여부를 확인하기 위한 값들은 `setValue` 함수를 사용해서 값을 설정하고 `getValues` 함수로 값을 가져오는 방식으로 처리하고 있기 때문입니다.
+- 그 이유는 CheckBox 컴포넌트에서 사용되는 input 태그의 체크 여부를 확인하기 위한 값들은 `setValue` 함수를 사용해서 값을 설정하고 `getValues` 함수로 값을 가져오는 방식으로 처리하고 있기 때문입니다.
 
 - `getValues`로 가져오는 값이 변경된다고 해서 다시 렌더링되지 않지만 `watch`로 해당 값들을 참조하면 `watch`가 참조하는 값의 변화에 따라 컴포넌트가 다시 렌더링 되어서 변화된 값에 따라 UI도 변경됩니다.
 
