@@ -1,19 +1,12 @@
-# NUMBLE - 가장 실무에 가까운 쿠팡 클론코딩 1회차
+## 구현 과제
 
-<details>
-  <summary style='font-size:20px'>과제보기</summary>
+### 첫번째 과제
 
-  <div markdown="1">
+- AuthService
 
-  <br/>
+  - AuthService는 인증 관련 비즈니스 로직들을 다루는 모듈입니다.
 
-## 첫번째 문제
-
-### AuthService
-
-- AuthService는 인증 관련 비즈니스 로직들을 다루는 모듈입니다.
-
-- 기본적인 코드는 아래와 같습니다.
+  - 기본적인 코드는 아래와 같습니다.
 
 ```tsx
 class AuthService {
@@ -70,27 +63,23 @@ class AuthService {
 export default new AuthService();
 ```
 
-- 가장 먼저 제시된 코드를 리팩토링 해보아요.
+- 가장 먼저 제시된 코드를 리팩토링 해주세요.
 
-- 어느 곳을 고치면 좋을까요? 그 이유는 무엇일까요?
-
-- 리팩토링 이후엔 재사용성, 확장성을 고려해 개선된 모듈을 설계해볼거에요.
-
-- 이미 추가된 UserService와, 이후 추가될 수 있을 OrderService, ItemService 등을 편하고 직관적으로 대응할 수 있도록, 하나의 부모클래스를 extend 하는 방법으로 구현해보아요!
+- 이미 추가된 UserService와, 이후 추가될 수 있을 OrderService, ItemService 등을 편하고 직관적으로 대응할 수 있도록, 하나의 부모클래스를 extend 하는 방법으로 구현해주세요.
 
 ---
 
 <br/>
 
-## 두번째 문제
+### 두번째 문제
 
-### useRequest
+- useRequest
 
-- useRequest는 API request를 보내주는 모듈입니다.
+  - useRequest는 API request를 보내주는 모듈입니다.
 
-- react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다!
+  - react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다.
 
-- 앞서 구현한 Service에 useQuery를 그대로 적용한 코드는 아래와 같습니다. (pages/index.tsx 경로에서 확인하실 수 있어요
+  - 앞서 구현한 Service에 useQuery를 그대로 적용한 코드는 아래와 같습니다. (pages/index.tsx 경로에서 확인할 수 있습니다.
 
 ```tsx
 import { useQuery } from 'react-query';
@@ -108,18 +97,15 @@ const Home: NextPage = () => {
 };
 ```
 
-- 다른 여러 요청들에도 공통적으로 간편하게 적용할 수 있는 인터페이스를 고민하고 구현해보아요!
-
-  </div>
-</details>
-
 ---
 
 <br/>
 
-## 첫번째 문제
+## 구현 결과
 
-- 첫번째 문제는 기존의 코드를 재사용성과 확장성을 고려해서 리팩토링하는 것입니다.
+### 첫번째 과제
+
+- 첫번째 과제는 기존의 코드를 재사용성과 확장성을 고려해서 리팩토링하는 것입니다.
 
 - 코드를 개선하기 위해서 우선 http 전송을 담당하는 클래스를 아래와 같이 정의해주었습니다.
 
@@ -162,6 +148,9 @@ export default HttpService;
 - 이렇게 정의한 클래스를 AuthService, UserService 클래스에서 바로 상속하는 것이 아니라 Service라는 클래스를 정의하고 이 클래스를 AuthService, UserService 클래스에서 상속하도록 했습니다.
 
 - 이 때 토큰을 가져오고 설정하는 함수가 AuthService, UserService 클래스에서 각각 정의되어 있었기 때문에 Service 클래스에 토큰 관련된 함수를 정의해서 상속받는 클래스에서 공통으로 사용할 수 있도록 했습니다.
+
+- 이를 통해 이후 추가될 수 있는 OrderService, ItemService와 같은 클래스에서도
+  Service라는 하나의 부모클래스를 extend 할 수 있도록 처리했습니다.
 
 - Service 클래스는 아래와 같습니다.
 
@@ -380,6 +369,7 @@ class UserService {
 
 export default new UserService();
 ```
+
 <br/>
 
 ### 수정 후
@@ -418,9 +408,9 @@ export default new UserService();
 
 ## 두번째 문제
 
-- 문제에서 “useRequest는 API request를 보내주는 모듈입니다. react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다!” 라고 언급되어있습니다.
+- 문제에서 “useRequest는 API request를 보내주는 모듈입니다. react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다” 라고 언급되어있습니다.
 
-- 따라서 react-query를 직접 사용하는 것이 아니라 추상화된 모듈을 가져다 사용할 수 있도록 아래처럼 useRequest 정의해주는 방식으로 react-query의 useQuery를 격리해주었습니다.
+- 따라서 react-query를 직접 사용하는 것이 아니라 아래처럼 필요한 인터페이스를 새롭게 정의해었습니다.
 
 ```jsx
 // useRequest.ts
