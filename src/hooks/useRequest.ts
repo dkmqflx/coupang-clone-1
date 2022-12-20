@@ -1,14 +1,13 @@
 import { useQuery } from 'react-query';
 
-type QueryOptions = {
-  refetchInterval?: number;
+type requestOptionType = {
   enabled?: boolean;
 };
 
-export const useRequest = (
+export const useRequest = <TData>(
   key: string | string[],
-  request: () => Promise<any>,
-  option?: QueryOptions
+  request: () => TData | Promise<TData>,
+  option?: requestOptionType
 ) => {
   return useQuery(key, request, { ...option });
 };
