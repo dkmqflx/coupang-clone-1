@@ -410,7 +410,7 @@ export default new UserService();
 
 - 문제에서 “useRequest는 API request를 보내주는 모듈입니다. react-query에 의존성 역전 원칙을 적용하기 위해 사용합니다” 라고 언급되어있습니다.
 
-- 따라서 react-query를 직접 사용하는 것이 아니라 아래처럼 필요한 인터페이스를 새롭게 정의해었습니다.
+- 따라서 react-query를 직접 사용하는 것이 아니라 아래처럼 필요한 인터페이스를 새롭게 정의해서 비동기 처리가 필요한 곳에서 사용할 수 있도록 했습니다.
 
 ```jsx
 // useRequest.ts
