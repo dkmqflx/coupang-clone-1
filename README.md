@@ -35,6 +35,7 @@
 ### Button
 
 <img src='images/image1.png' width='500px'>
+<img src='images/image5.png' width='500px'>
 
 - 위의 유즈케이스 외에는 고려하지 않아도 됩니다
 
@@ -333,7 +334,7 @@ email.current = watch('email');
 
 - `getValues`로 가져오는 값이 변경된다고 해서 다시 렌더링되지 않지만 `watch`로 해당 값들을 참조하면 `watch`가 참조하는 값의 변화에 따라 컴포넌트가 다시 렌더링 되어서 변화된 값에 따라 UI도 변경됩니다.
 
-- 즉 `watch`로 필요한 값들을 참조해야지 `setValue`를 통해서 값이 변경되었을 때 다시 렌더링 되기 때문에 필요한 값들을 `watch`로 참조하였습니다.
+- `watch`로 필요한 값들을 참조해야지 `setValue`를 통해서 값이 변경되었을 때 다시 렌더링 되기 때문에 필요한 값들을 `watch`로 참조하였습니다.
 
 ```jsx
 // signup.tsx
