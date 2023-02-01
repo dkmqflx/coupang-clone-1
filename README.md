@@ -155,8 +155,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 - 상품과 관련된 함수들을 가져다 사용할 수 있는 Product 클래스를 정의해서 모듈화시켜주었습니다.
 
-- 이 때 상속한 Service 클래스에는 http 통신에 관한 함수가 구현되어 있습니다.
-
 ```ts
 // src/services/product.service.ts
 
@@ -164,6 +162,7 @@ import axios from 'axios';
 import Service from './service';
 
 class Product extends Service {
+  // Breadcrumb 정보
   async getProductList(productId: string | undefined) {
     const { data } = await axios({
       url: `/api/products/${productId}/breadcrumb-gnbmenu`,
@@ -173,6 +172,7 @@ class Product extends Service {
     return data;
   }
 
+  // 상품 정보에 해당하는 데이터
   async getProductInfo(
     productId: string | undefined,
     vendoritemId: string | undefined
@@ -184,6 +184,7 @@ class Product extends Service {
     return data;
   }
 
+  // Apple의 다른 상품들에 해당하는 데이터
   async getOtherProduct(
     productId: string | undefined,
     itemId: string | undefined,
@@ -196,6 +197,7 @@ class Product extends Service {
     return data;
   }
 
+  // 상품 상세에 해당하는 데이터
   async getProductDetails(
     productId: string | undefined,
     itemId: string | undefined,
